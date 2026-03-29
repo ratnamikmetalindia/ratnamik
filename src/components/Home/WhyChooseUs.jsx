@@ -154,9 +154,9 @@ function WhyChooseUs() {
                 */}
                 <div className="flex flex-col items-start group cursor-pointer transform transition-transform duration-500 hover:-translate-y-2">
                   
-                  {/* Solid Circular Icon Area - DEFAULT SHADOW REMOVED */}
-                  <div className="shrink-0 w-14 h-14 md:w-16 md:h-16 rounded-full bg-[#2EC4FF] flex items-center justify-center mb-6 transition-all duration-[700ms] shadow-none group-hover:shadow-[0_8px_30px_rgba(46,196,255,0.4)]">
-                    <div className="stroke-[#ffffff] group-hover:stroke-[#06367b]">
+                  {/* Solid Circular Icon Area - GRADIENT APPLIED & DEFAULT SHADOW REMOVED */}
+                  <div className="shrink-0 w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#06367b] via-[#2EC4FF] to-[#075ca6] flex items-center justify-center mb-6 transition-all duration-[700ms] shadow-none group-hover:shadow-[0_8px_30px_rgba(46,196,255,0.4)]">
+                    <div className="stroke-[#ffffff] transform transition-transform duration-500 group-hover:scale-110">
                       <feature.Icon />
                     </div>
                   </div>
