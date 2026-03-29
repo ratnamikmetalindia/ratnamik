@@ -13,11 +13,40 @@ const FadeUpSection = ({ children, delay = 0, isVisible }) => (
   </div>
 );
 
+// --- Custom Minimalist Icons ---
+const GlobeIcon = () => (
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10"></circle>
+    <path d="M2 12h20"></path>
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+  </svg>
+);
+
+const TimelineIcon = () => (
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10"></circle>
+    <polyline points="12 6 12 12 16 14"></polyline>
+  </svg>
+);
+
+const EngineeringIcon = () => (
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 2v20"></path>
+    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+  </svg>
+);
+
+const QualityIcon = () => (
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+    <polyline points="9 12 11 14 15 10"></polyline>
+  </svg>
+);
+
 function WhyChooseUs() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
-  // Scroll observer to trigger animations
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -26,13 +55,10 @@ function WhyChooseUs() {
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.2 } // Triggers when 20% of the section is visible
+      { threshold: 0.2 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => {
       if (sectionRef.current) observer.unobserve(sectionRef.current);
     };
@@ -40,24 +66,24 @@ function WhyChooseUs() {
 
   const features = [
     {
-      num: "01",
       title: "Global Standards",
-      description: "We strictly adhere to international codes and specifications, ensuring flawless execution and absolute reliability across borders.",
+      description: "Strict adherence to international codes, ensuring flawless execution across borders.",
+      Icon: GlobeIcon,
     },
     {
-      num: "02",
       title: "Decades of Expertise",
-      description: "With over 40 years of pioneering experience, our deep industry knowledge translates directly into superior product quality.",
+      description: "40+ years of pioneering experience translating into superior product quality.",
+      Icon: TimelineIcon,
     },
     {
-      num: "03",
       title: "Custom Engineering",
-      description: "Delivering bespoke, precision-engineered metal solutions perfectly tailored to meet your most complex industrial demands.",
+      description: "Bespoke, precision-engineered metal solutions tailored to complex demands.",
+      Icon: EngineeringIcon,
     },
     {
-      num: "04",
       title: "Uncompromising Quality",
-      description: "Rigorous testing protocols and ISO-certified processes guarantee durability, performance, and long-term value.",
+      description: "Rigorous testing and ISO-certified processes guarantee long-term value.",
+      Icon: QualityIcon,
     }
   ];
 
@@ -77,100 +103,81 @@ function WhyChooseUs() {
 
       {/* 
         Section Layout: 
-        - Background: Primary Blue (#06367b)
-        - Height: min-h-[70vh] to ensure a massive, immersive presence
+        - Primary Blue (#06367b)
+        - min-h-[70vh] combined with flex and items-center keeps it perfectly contained.
       */}
       <section 
         ref={sectionRef} 
-        className="relative bg-[#075ca6] min-h-[70vh] py-20 md:py-32 px-4 md:px-[8%] w-full flex items-center overflow-hidden z-0"
+        className="relative bg-[#06367b] min-h-[70vh] py-16 md:py-20 px-4 md:px-[8%] w-full flex items-center justify-center overflow-hidden z-0"
       >
         
-        {/* Abstract Ambient Glows for Premium Depth */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#075ca6] rounded-full blur-[150px] opacity-40 pointer-events-none -z-10 transform translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#2EC4FF] rounded-full blur-[150px] opacity-10 pointer-events-none -z-10 transform -translate-x-1/3 translate-y-1/3"></div>
+        {/* Subtle Background Glow for depth */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#075ca6] rounded-full blur-[200px] opacity-30 pointer-events-none -z-10"></div>
 
-        <div className="max-w-[1400px] mx-auto w-full flex flex-col lg:flex-row gap-16 lg:gap-24 relative z-10">
+        <div className="max-w-[1400px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center relative z-10">
           
-          {/* --- Left Column: Sticky Typography --- */}
-          <div className="w-full lg:w-[40%] flex flex-col items-start lg:sticky lg:top-32 h-fit">
+          {/* --- Left Column: Typography (Takes up 5/12 of the grid on desktop) --- */}
+          <div className="lg:col-span-5 flex flex-col items-start">
             <FadeUpSection isVisible={isVisible} delay={0}>
               
-              {/* Subtle Tagline */}
               <p className="text-[#2EC4FF] font-semibold tracking-widest uppercase text-sm mb-4">
                 The Ratnamik Advantage
               </p>
 
-              {/* Main Heading -> Light Background (#fdfdfd) */}
-              <h2 className="text-4xl md:text-5xl lg:text-[64px] font-bold text-[#fdfdfd] leading-[1.1] mb-8 tracking-tight">
+              <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold text-[#fdfdfd] leading-[1.1] mb-6 tracking-tight">
                 Why Choose<br />Our Solutions.
               </h2>
               
               {/* Premium Animated Shine Line */}
-              {/* Base -> Secondary Blue (#075ca6), Shine -> Accent Glow Blue (#2EC4FF) */}
               <div 
-                className={`relative h-1.5 bg-[#075ca6] rounded-full overflow-hidden mb-10 transition-all duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                className={`relative h-1.5 bg-[#075ca6] rounded-full overflow-hidden mb-8 transition-all duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
                   isVisible ? 'w-24 md:w-32 delay-[200ms]' : 'w-0'
                 }`}
               >
                 <div className="absolute top-0 left-0 h-full w-[40%] bg-gradient-to-r from-transparent via-[#2EC4FF] to-transparent animate-shimmer-line"></div>
               </div>
 
-              {/* Description -> Soft Section BG (#EAF4FF) with opacity */}
-              <p className="text-[#EAF4FF]/80 text-base md:text-[18px] leading-[1.9] tracking-[0.02em] max-w-md">
+              <p className="text-[#EAF4FF]/80 text-base md:text-[17px] leading-[1.9] tracking-[0.02em] max-w-md">
                 We don't just supply metal products; we forge lasting partnerships. Our commitment to integrity, precision, and relentless innovation ensures your projects are built on the strongest possible foundation.
               </p>
 
             </FadeUpSection>
           </div>
 
-          {/* --- Right Column: Interactive Luxury Rows --- */}
-          <div className="w-full lg:w-[60%] flex flex-col">
-            {/* Top Border for the list */}
-            <div className="w-full h-[1px] bg-[#075ca6]/40"></div>
-
+          {/* --- Right Column: 2x2 Bento Grid (Takes up 7/12 of the grid) --- */}
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
             {features.map((feature, index) => (
               <FadeUpSection 
                 key={index} 
                 isVisible={isVisible} 
-                delay={(index + 1) * 150} // Staggered delay for each row
+                delay={(index + 1) * 150} 
               >
                 {/* 
-                  Interactive Row:
-                  Default border -> Secondary Blue with opacity
-                  Hover -> Cyan line draws across the bottom
+                  Premium Compact Card: 
+                  - Default: Transparent dark blue with ultra-subtle border
+                  - Hover: Border glows Cyan, slightly lifts
                 */}
-                <div className="group relative w-full py-8 md:py-10 border-b border-[#075ca6]/40 flex flex-col md:flex-row gap-6 md:gap-12 items-start md:items-center cursor-pointer transition-colors duration-500 hover:bg-[#075ca6]/10 px-4 md:px-8 -mx-4 md:-mx-8 rounded-lg overflow-hidden">
+                <div className="group relative h-full flex flex-col p-8 rounded-2xl bg-[#075ca6]/10 border border-[#2EC4FF]/10 hover:border-[#2EC4FF]/50 hover:bg-[#075ca6]/20 transition-all duration-500 hover:-translate-y-1 overflow-hidden">
                   
-                  {/* The Interactive Bottom Line that draws on hover */}
-                  <div className="absolute bottom-0 left-0 h-[2px] bg-[#2EC4FF] w-0 group-hover:w-full transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"></div>
+                  {/* Subtle hover glow inside the card */}
+                  <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#2EC4FF] rounded-full blur-[60px] opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none"></div>
 
-                  {/* Number Indicator -> Accent Glow Blue (#2EC4FF) */}
-                  <span className="text-[#2EC4FF] font-medium text-lg md:text-xl tracking-widest shrink-0 w-12 transition-transform duration-500 group-hover:-translate-y-1">
-                    {feature.num}.
-                  </span>
+                  {/* Icon Area */}
+                  <div className="w-12 h-12 rounded-full bg-[#06367b] border border-[#2EC4FF]/20 flex items-center justify-center mb-6 transition-transform duration-500 group-hover:scale-110">
+                    <div className="text-[#2EC4FF]">
+                      <feature.Icon />
+                    </div>
+                  </div>
                   
-                  {/* Content Container (Shifts right on hover) */}
-                  <div className="flex-1 transform transition-transform duration-500 group-hover:translate-x-3">
-                    <h3 className="text-2xl md:text-[28px] font-bold text-[#fdfdfd] mb-3 tracking-tight">
-                      {feature.title}
-                    </h3>
-                    <p className="text-[#EAF4FF]/70 text-base md:text-[17px] leading-[1.8] tracking-[0.02em]">
-                      {feature.description}
-                    </p>
-                  </div>
-
-                  {/* Interaction Arrow */}
-                  <div className="hidden md:flex items-center justify-center w-12 h-12 rounded-full border border-[#075ca6] group-hover:border-[#2EC4FF] group-hover:bg-[#2EC4FF] transition-all duration-500 shrink-0">
-                    <svg 
-                      className="w-5 h-5 text-[#EAF4FF] group-hover:text-[#06367b] transform -rotate-45 group-hover:rotate-0 transition-transform duration-500" 
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24" 
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                  </div>
+                  {/* Title */}
+                  <h3 className="text-xl md:text-[22px] font-bold text-[#fdfdfd] mb-3 tracking-tight">
+                    {feature.title}
+                  </h3>
+                  
+                  {/* Description */}
+                  <p className="text-[#EAF4FF]/70 text-[15px] leading-[1.8] tracking-[0.02em]">
+                    {feature.description}
+                  </p>
 
                 </div>
               </FadeUpSection>
