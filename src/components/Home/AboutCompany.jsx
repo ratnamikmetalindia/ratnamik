@@ -125,7 +125,7 @@ function AboutCompany() {
               {/* Part 1 */}
               <div className={`transform transition-all duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${isVisible ? 'opacity-100 translate-y-0 delay-[200ms]' : 'opacity-0 translate-y-12'}`}>
                 <p className="text-[#626569] text-base md:text-[17px] leading-[1.9] tracking-[0.02em] text-left">
-                  <strong className="text-[#075ca6] font-semibold">Established in 1981</strong>, Ratnamik Metal India has emerged as a trusted name in the global metal industry, renowned for its excellence in exporting and supplying a comprehensive range of industrial piping solutions.
+                  <strong className="text-[#075ca6] font-semibold">Established in 2012</strong>, Ratnamik Metal India has emerged as a trusted name in the global metal industry, renowned for its excellence in exporting and supplying a comprehensive range of industrial piping solutions.
                 </p>
               </div>
 
