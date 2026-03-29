@@ -204,11 +204,11 @@ function ProductAndServices() {
                     {/* --- 3. Card Content (Increased Padding and Min-Height) --- */}
                     <div className="relative z-30 p-10 lg:p-12 flex flex-col h-full min-h-[380px]">
                       
-                      {/* Icon Presentation with 360 Spin on Hover / Click */}
-                      <div className={`w-16 h-16 rounded-full bg-[#EAF4FF] flex items-center justify-center mb-10 transform transition-transform duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)] ${
+                      {/* Icon Presentation with Gradient Background and 360 Spin on Hover / Click */}
+                      <div className={`w-16 h-16 rounded-full bg-gradient-to-br from-[#06367b] via-[#2EC4FF] to-[#075ca6] flex items-center justify-center mb-10 transform transition-transform duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)] shadow-lg ${
                         isActive ? 'rotate-[360deg]' : 'group-hover:rotate-[360deg]'
                       }`}>
-                        <div className={`text-[#06367b] transform transition-transform duration-500 ${
+                        <div className={`text-white transform transition-transform duration-500 ${
                           isActive ? 'scale-110' : 'group-hover:scale-110'
                         }`}>
                           <service.Icon />

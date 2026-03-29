@@ -35,7 +35,7 @@ function Navbar() {
         <div className="absolute top-0 left-0 w-[40%] md:w-[20%] h-full bg-gradient-to-r from-transparent via-white/30 to-transparent animate-sweep pointer-events-none z-0"></div>
 
         <div className="font-medium tracking-wide text-center md:text-left relative z-10">
-          ISO 9001 : 2015 Certified Co.
+          ISO 9001 : 2012 Certified Co.
         </div>
         
         <div className="flex items-center gap-4 md:gap-6 flex-wrap justify-center relative z-10">
