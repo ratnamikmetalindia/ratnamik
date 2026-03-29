@@ -15,7 +15,7 @@ const FadeUpSection = ({ children, delay = 0, isVisible }) => (
 
 // --- Custom Minimalist Industrial SVGs ---
 const IconTubes = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
     <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
     <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
@@ -23,7 +23,7 @@ const IconTubes = () => (
 );
 
 const IconPipes = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M4 4h16v4H4z"></path>
     <path d="M4 16h16v4H4z"></path>
     <path d="M9 8v8"></path>
@@ -32,14 +32,14 @@ const IconPipes = () => (
 );
 
 const IconProcessing = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <circle cx="12" cy="12" r="3"></circle>
     <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
   </svg>
 );
 
 const IconColdDrawing = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M22 12H2"></path>
     <path d="M15 5l7 7-7 7"></path>
     <rect x="2" y="8" width="6" height="8"></rect>
@@ -47,7 +47,7 @@ const IconColdDrawing = () => (
 );
 
 const IconCustomSolutions = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M12 2v8"></path>
     <path d="M12 14v8"></path>
     <path d="M4.93 4.93l5.66 5.66"></path>
@@ -60,7 +60,7 @@ const IconCustomSolutions = () => (
 );
 
 const IconQuality = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
     <path d="M9 12l2 2 4-4"></path>
   </svg>
@@ -68,6 +68,7 @@ const IconQuality = () => (
 
 function ProductAndServices() {
   const [isVisible, setIsVisible] = useState(false);
+  const [activeCard, setActiveCard] = useState(null); // State to handle mobile click/tap
   const sectionRef = useRef(null);
 
   // Scroll observer to trigger animations
@@ -119,10 +120,15 @@ function ProductAndServices() {
     },
     {
       title: "Quality Assurance",
-      description: "ISO 9001:2015 certified processes ensuring consistent quality and reliability. Comprehensive testing and quality control measures.",
+      description: "ISO 9001:2012 certified processes ensuring consistent quality and reliability. Comprehensive testing and quality control measures.",
       Icon: IconQuality,
     }
   ];
+
+  // Handler for mobile taps
+  const handleCardClick = (index) => {
+    setActiveCard(activeCard === index ? null : index);
+  };
 
   return (
     <>
@@ -140,7 +146,8 @@ function ProductAndServices() {
 
       {/* Section Background -> Pure White (#ffffff) */}
       <section ref={sectionRef} className="bg-[#ffffff] py-24 md:py-32 px-4 md:px-[8%] w-full overflow-hidden">
-        <div className="max-w-[1400px] mx-auto">
+        {/* Expanded container for larger cards */}
+        <div className="max-w-[1536px] mx-auto">
           
           {/* Header Section */}
           <FadeUpSection isVisible={isVisible} delay={0}>
@@ -160,52 +167,69 @@ function ProductAndServices() {
             </div>
           </FadeUpSection>
 
-          {/* Grid Container */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-12">
-            {services.map((service, index) => (
-              <FadeUpSection 
-                key={index} 
-                isVisible={isVisible} 
-                delay={(index % 3) * 150 + Math.floor(index / 3) * 100} 
-              >
-                {/* 
-                  Premium Card Layout
-                  Removed the gradient blur underglow, returned to the clean, deep shadow hover state
-                */}
-                <div className="group relative h-full transition-all duration-500 hover:-translate-y-2 shadow-[0_4px_16px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(6,54,123,0.12)] bg-[#ffffff] rounded-2xl z-0">
-                  
-                  {/* --- 1. Default Light Gray Border Layer --- */}
-                  <div className="absolute inset-0 rounded-2xl border border-gray-200 transition-opacity duration-500 group-hover:opacity-0 pointer-events-none z-20"></div>
+          {/* Grid Container - Decreased gap to pull larger cards closer together */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8">
+            {services.map((service, index) => {
+              
+              // Check if this specific card is tapped/active
+              const isActive = activeCard === index;
 
-                  {/* --- 2. Gradient Border on Hover --- */}
-                  <div className="absolute inset-0 rounded-2xl p-[1.5px] bg-gradient-to-br from-[#06367b] via-[#2EC4FF] to-[#075ca6] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-20">
-                    <div className="w-full h-full bg-[#ffffff] rounded-[14.5px]"></div>
-                  </div>
-
-                  {/* --- 3. Card Content --- */}
-                  <div className="relative z-30 p-8 md:p-10 flex flex-col h-full">
+              return (
+                <FadeUpSection 
+                  key={index} 
+                  isVisible={isVisible} 
+                  delay={(index % 3) * 150 + Math.floor(index / 3) * 100} 
+                >
+                  <div 
+                    onClick={() => handleCardClick(index)}
+                    className={`group relative h-full transition-all duration-500 bg-[#ffffff] rounded-2xl z-0 cursor-pointer ${
+                      isActive 
+                        ? '-translate-y-2 shadow-[0_20px_40px_rgba(6,54,123,0.12)]' 
+                        : 'shadow-[0_4px_16px_rgba(0,0,0,0.04)] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(6,54,123,0.12)]'
+                    }`}
+                  >
                     
-                    {/* Icon Presentation with 360 Spin on Hover */}
-                    <div className="w-14 h-14 rounded-full bg-[#EAF4FF] flex items-center justify-center mb-8 transform transition-transform duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:rotate-[360deg]">
-                      <div className="text-[#06367b] transform transition-transform duration-500 group-hover:scale-110">
-                        <service.Icon />
-                      </div>
+                    {/* --- 1. Default Light Gray Border Layer --- */}
+                    <div className={`absolute inset-0 rounded-2xl border border-gray-200 transition-opacity duration-500 pointer-events-none z-20 ${
+                      isActive ? 'opacity-0' : 'opacity-100 group-hover:opacity-0'
+                    }`}></div>
+
+                    {/* --- 2. Gradient Border on Hover / Click --- */}
+                    <div className={`absolute inset-0 rounded-2xl p-[1.5px] bg-gradient-to-br from-[#06367b] via-[#2EC4FF] to-[#075ca6] transition-opacity duration-500 pointer-events-none z-20 ${
+                      isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                    }`}>
+                      <div className="w-full h-full bg-[#ffffff] rounded-[14.5px]"></div>
                     </div>
-                    
-                    {/* Card Title */}
-                    <h3 className="text-xl md:text-[22px] font-bold text-[#06367b] mb-4 tracking-tight">
-                      {service.title}
-                    </h3>
-                    
-                    {/* Card Description -> Neutral Grey (#626569) */}
-                    <p className="text-[#626569] text-base md:text-[17px] leading-[1.9] tracking-[0.02em]">
-                      {service.description}
-                    </p>
 
+                    {/* --- 3. Card Content (Increased Padding and Min-Height) --- */}
+                    <div className="relative z-30 p-10 lg:p-12 flex flex-col h-full min-h-[380px]">
+                      
+                      {/* Icon Presentation with 360 Spin on Hover / Click */}
+                      <div className={`w-16 h-16 rounded-full bg-[#EAF4FF] flex items-center justify-center mb-10 transform transition-transform duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)] ${
+                        isActive ? 'rotate-[360deg]' : 'group-hover:rotate-[360deg]'
+                      }`}>
+                        <div className={`text-[#06367b] transform transition-transform duration-500 ${
+                          isActive ? 'scale-110' : 'group-hover:scale-110'
+                        }`}>
+                          <service.Icon />
+                        </div>
+                      </div>
+                      
+                      {/* Card Title */}
+                      <h3 className="text-2xl md:text-[24px] font-bold text-[#06367b] mb-5 tracking-tight">
+                        {service.title}
+                      </h3>
+                      
+                      {/* Card Description */}
+                      <p className="text-[#626569] text-base md:text-[17px] leading-[1.9] tracking-[0.02em]">
+                        {service.description}
+                      </p>
+
+                    </div>
                   </div>
-                </div>
-              </FadeUpSection>
-            ))}
+                </FadeUpSection>
+              );
+            })}
           </div>
 
         </div>
