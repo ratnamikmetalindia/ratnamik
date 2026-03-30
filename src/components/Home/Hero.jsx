@@ -31,7 +31,13 @@ function Hero() {
       image: "/hero/slider4.jpg",
       title: "Reliable Global Export",
       subtitle: "Connecting Indian metal manufacturing to the world.",
-    }
+    },
+    {
+      id: 5,
+      image: "/hero/slider5.jpg",
+      title: "Strength You Can Trust",
+      subtitle: "Delivering durable metal products with unmatched reliability.",
+    },
   ];
 
   const nextSlide = useCallback(() => {
@@ -81,7 +87,7 @@ function Hero() {
               />
               
               {/* Refined Gradient Overlay - Only darkens the left side for text, keeping the rest of the image perfectly bright */}
-              <div className="absolute inset-y-0 left-0 w-full md:w-[60%] bg-gradient-to-r from-black/80 via-black/40 to-transparent pointer-events-none z-10"></div>
+              <div className="absolute inset-y-0 left-0 w-full md:w-[50%] bg-gradient-to-r from-black/40 via-black/10 to-transparent pointer-events-none z-10"></div>
             </div>
 
             {/* Text Content - Positioned over the gradient */}

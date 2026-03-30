@@ -59,7 +59,7 @@ function Navbar() {
         {/* Logo Section */}
         <div className="w-auto md:w-[50%] h-full flex items-center md:pl-[10%]">
           <Link href="/" className="flex items-center gap-2">
-            <Image src="/logoo.png" alt="logo" height={80} width={80} className="w-[60px] md:w-[80px]" />
+            <Image src="/logo.png" alt="logo" height={80} width={80} className="w-[60px] md:w-[80px]" />
             <div className="leading-tight">
               <h2 className="font-bold text-xl md:text-2xl text-[#075ca6]">RATNAMIK</h2>
               <p className="font-semibold text-sm md:text-xl text-[#626569]">Metal India</p>
