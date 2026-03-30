@@ -13,8 +13,8 @@ const FadeUpSection = ({ children, delay = 0, isVisible, className = "" }) => (
   </div>
 );
 
-// --- Premium Form Input Component ---
-const ContactInput = ({ label, required, placeholder, type = 'text', isTextArea = false }) => {
+// --- Premium Form Input Component with Gradient Focus Border ---
+const ContactInput = ({ label, required, type = 'text', isTextArea = false }) => {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
@@ -57,7 +57,7 @@ const ContactInput = ({ label, required, placeholder, type = 'text', isTextArea 
   );
 };
 
-// --- Solid/Filled White Icons for the Contact Card ---
+// --- UPDATED: Solid/Filled White Icons for the Contact Card ---
 const LocationIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" className="shrink-0 text-white">
     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
@@ -119,12 +119,12 @@ function ContactUs() {
     {
       Icon: LocationIcon,
       label: 'Address',
-      content: 'Office No.8, 1st Floor, Aayesha Manzil, Bldg. No. 81/83, 4th Kumbharwada, Mumbai Maharashtra - 400004, India'
+      content: 'Office No.8, 1st Floor, Aayesha Manzil, Bldg. No. 81/83, 4th Kumbharwada,Mumbai Maharashtra - 400004, India'
     },
     {
       Icon: PhoneIcon,
       label: 'Phone',
-      content: ['07313726882']
+      content: ['+91 7313726882']
     },
     {
       Icon: EnvelopeIcon,
@@ -216,8 +216,7 @@ function ContactUs() {
             {/* --- Right Column: Contact Panel --- */}
             <div className="lg:col-span-2 h-full">
               <FadeUpSection isVisible={isVisible} delay={300} className="h-full">
-                {/* UPDATED: Gradient Background Applied Here */}
-                <div className="p-8 md:p-12 bg-gradient-to-br from-[#06367b] to-[#075ca6] rounded-2xl shadow-[0_20px_40px_rgba(7,92,166,0.2)] flex flex-col gap-12 text-white overflow-hidden relative h-full">
+                <div className="p-8 md:p-12 bg-[#075ca6] rounded-2xl shadow-[0_20px_40px_rgba(7,92,166,0.2)] flex flex-col gap-12 text-white overflow-hidden relative h-full">
                   
                   {/* Decorative background element */}
                   <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-[#2EC4FF] opacity-15 blur-[80px] pointer-events-none"></div>
@@ -231,6 +230,7 @@ function ContactUs() {
                     {contactItems.map((item, idx) => (
                       <div key={idx} className="flex flex-row items-start gap-5 group">
                         
+                        {/* UPDATED: Solid icons, no background circle */}
                         <div className="mt-1 transition-transform duration-300 group-hover:scale-110 group-hover:text-[#2EC4FF]">
                           <item.Icon />
                         </div>
@@ -249,7 +249,7 @@ function ContactUs() {
                               ))}
                             </div>
                           ) : item.label === 'Email' ? (
-                            <a href={`mailto:${item.content}`} className="text-base text-white hover:text-[#2EC4FF] transition-colors break-all">
+                            <a href={`mailto:${item.content}`} className="text-base text-white hover:text-[#2EC4FF] transition-colors leading-relaxed">
                               {item.content}
                             </a>
                           ) : (
