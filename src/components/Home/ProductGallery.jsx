@@ -23,7 +23,12 @@ const ArrowRight = () => (
 
 function ProductGallery() {
   const [isVisible, setIsVisible] = useState(false);
-  const [activeCard, setActiveCard] = useState(null); // Added state for mobile tap handling
+  
+  // States for handling mobile long-press logic
+  const [activeCard, setActiveCard] = useState(null); 
+  const [isLongPress, setIsLongPress] = useState(false);
+  const pressTimer = useRef(null);
+  
   const sectionRef = useRef(null);
 
   // Scroll observer to trigger animations
@@ -86,9 +91,25 @@ function ProductGallery() {
     }
   ];
 
-  // Handler for mobile taps
-  const handleCardClick = (index) => {
-    setActiveCard(activeCard === index ? null : index);
+  // --- Mobile Touch Handlers ---
+  const handleTouchStart = (index) => {
+    setIsLongPress(false);
+    pressTimer.current = setTimeout(() => {
+      setActiveCard(index);
+      setIsLongPress(true);
+    }, 350); // 350ms delay to register as a "Press and Hold"
+  };
+
+  const handleTouchEndOrCancel = () => {
+    if (pressTimer.current) clearTimeout(pressTimer.current);
+    setActiveCard(null); // Instantly clears the hover state when user lifts finger
+  };
+
+  const handleClick = (e) => {
+    // If the user just completed a long-press, prevent navigation so they don't accidentally click through
+    if (isLongPress) {
+      e.preventDefault();
+    }
   };
 
   return (
@@ -131,7 +152,7 @@ function ProductGallery() {
           {/* Product Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 mb-20">
             {products.map((product, index) => {
-              const isActive = activeCard === index; // Check if this card is tapped on mobile
+              const isActive = activeCard === index; // Checks if mobile user is holding this specific card
 
               return (
                 <FadeUpSection 
@@ -139,11 +160,17 @@ function ProductGallery() {
                   isVisible={isVisible} 
                   delay={(index % 3) * 150 + Math.floor(index / 3) * 100} 
                 >
-                  {/* Premium Simple Card Layout */}
-                  <div 
-                    onClick={() => handleCardClick(index)}
-                    className={`group relative flex flex-col w-full bg-white rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 border border-gray-100 ${
-                      isActive ? 'shadow-[0_16px_40px_rgba(6,54,123,0.15)]' : 'shadow-[0_4px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_40px_rgba(6,54,123,0.15)]'
+                  {/* Premium Simple Card Layout (Now an 'a' tag for direct navigation) */}
+                  <a 
+                    href={`/product/${product.id}`} // Dummy link to product page
+                    onTouchStart={() => handleTouchStart(index)}
+                    onTouchEnd={handleTouchEndOrCancel}
+                    onTouchMove={handleTouchEndOrCancel}
+                    onTouchCancel={handleTouchEndOrCancel}
+                    onClick={handleClick}
+                    onContextMenu={(e) => isLongPress && e.preventDefault()} // Prevents mobile menu popping up during long press
+                    className={`block group relative flex flex-col w-full bg-white rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 border border-gray-100 ${
+                      isActive ? 'shadow-[0_16px_40px_rgba(6,54,123,0.15)] scale-[1.02]' : 'shadow-[0_4px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_40px_rgba(6,54,123,0.15)]'
                     }`}
                   >
                     
@@ -166,7 +193,7 @@ function ProductGallery() {
                         isActive ? 'opacity-0' : 'opacity-100 group-hover:opacity-0'
                       }`}></div>
                       
-                      {/* Hover Background Layer (Premium Gradient) */}
+                      {/* Hover/Hold Background Layer (Premium Gradient) */}
                       <div className={`absolute inset-0 bg-gradient-to-r from-[#06367b] via-[#2EC4FF] to-[#075ca6] transition-opacity duration-500 z-0 ${
                         isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
                       }`}></div>
@@ -221,7 +248,7 @@ function ProductGallery() {
                       </div>
                     </div>
 
-                  </div>
+                  </a>
                 </FadeUpSection>
               );
             })}
@@ -231,7 +258,7 @@ function ProductGallery() {
           <FadeUpSection isVisible={isVisible} delay={400}>
             <div className="flex justify-center">
               {/* Premium Button */}
-              <button className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-[#06367b] rounded-full overflow-hidden shadow-[0_4px_20px_rgba(6,54,123,0.2)] hover:shadow-[0_8px_30px_rgba(46,196,255,0.3)] hover:-translate-y-1">
+              <a href="/products" className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-[#06367b] rounded-full overflow-hidden shadow-[0_4px_20px_rgba(6,54,123,0.2)] hover:shadow-[0_8px_30px_rgba(46,196,255,0.3)] hover:-translate-y-1">
                 
                 {/* The Gradient Hover Fill */}
                 <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-[#06367b] via-[#2EC4FF] to-[#075ca6] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -243,7 +270,7 @@ function ProductGallery() {
                     <ArrowRight />
                   </div>
                 </span>
-              </button>
+              </a>
             </div>
           </FadeUpSection>
 
