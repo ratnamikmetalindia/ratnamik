@@ -1,4 +1,5 @@
 import AboutCompany from '@/components/Home/AboutCompany'
+import ContactUs from '@/components/Home/ContactUs'
 import Counter from '@/components/Home/Counter'
 import Hero from '@/components/Home/Hero'
 import Navbar from '@/components/Home/Navbar'
@@ -17,6 +18,7 @@ function page() {
     <ProductAndServices/>
     <WhyChooseUs/>
     <ProductGallery/>
+    <ContactUs/>
     </>
   )
 }

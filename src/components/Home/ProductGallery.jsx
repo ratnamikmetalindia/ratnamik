@@ -134,6 +134,7 @@ function ProductGallery() {
           <FadeUpSection isVisible={isVisible} delay={0}>
             <div className="flex flex-col items-center justify-center mb-16 md:mb-24 text-center">
               
+              {/* Heading restored to solid primary blue */}
               <h2 className="text-4xl md:text-5xl lg:text-[54px] font-bold text-[#06367b] leading-tight mb-6 tracking-tight">
                 Featured Products
               </h2>
@@ -257,20 +258,28 @@ function ProductGallery() {
           {/* Centered Action Button */}
           <FadeUpSection isVisible={isVisible} delay={400}>
             <div className="flex justify-center">
-              {/* Premium Button */}
-              <a href="/products" className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-[#06367b] rounded-full overflow-hidden shadow-[0_4px_20px_rgba(6,54,123,0.2)] hover:shadow-[0_8px_30px_rgba(46,196,255,0.3)] hover:-translate-y-1">
+              
+              {/* UPDATED: Matches the View Pill Logic exactly */}
+              <a 
+                href="/products" 
+                className="group relative inline-flex items-center justify-center px-8 py-4 rounded-full overflow-hidden transition-all duration-500 shadow-[0_4px_20px_rgba(6,54,123,0.15)] hover:shadow-[0_8px_30px_rgba(6,54,123,0.15)] hover:-translate-y-1 border border-transparent hover:border-gray-200"
+              >
                 
-                {/* The Gradient Hover Fill */}
-                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-[#06367b] via-[#2EC4FF] to-[#075ca6] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                {/* Button Default Background (Gradient) */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#06367b] via-[#2EC4FF] to-[#075ca6] transition-opacity duration-500 opacity-100 group-hover:opacity-0"></div>
+                
+                {/* Button Hover Background (White) */}
+                <div className="absolute inset-0 bg-white transition-opacity duration-500 opacity-0 group-hover:opacity-100"></div>
                 
                 {/* Button Text & Icon */}
-                <span className="relative z-10 flex items-center gap-3 text-sm md:text-base tracking-wide">
+                <span className="relative z-10 flex items-center gap-3 text-sm md:text-base font-bold tracking-wide transition-colors duration-500 text-white group-hover:text-[#06367b]">
                   View More Products
                   <div className="transform transition-transform duration-500 group-hover:translate-x-1">
                     <ArrowRight />
                   </div>
                 </span>
               </a>
+              
             </div>
           </FadeUpSection>
 
