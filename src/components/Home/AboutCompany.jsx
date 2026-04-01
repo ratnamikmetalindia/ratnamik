@@ -61,7 +61,7 @@ function AboutCompany() {
       }} />
 
       {/* Section Background */}
-      <section className="bg-[#ffffff] py-16 md:py-24 px-4 md:px-[8%] w-full overflow-hidden">
+      <section id='company' className="bg-[#ffffff] scroll-mt-[90px] py-16 md:py-24 px-4 md:px-[8%] w-full overflow-hidden">
         {/* Added items-start here so the heading naturally aligns with the top of the images */}
         <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row items-start gap-12 lg:gap-20">
           

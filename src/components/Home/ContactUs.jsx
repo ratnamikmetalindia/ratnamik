@@ -153,7 +153,7 @@ function ContactUs() {
       }} />
 
       {/* Main Section - Clean Light Gray Background */}
-      <section ref={sectionRef} className="bg-[#F8F9FA] py-24 md:py-32 px-4 md:px-[8%] w-full overflow-hidden">
+      <section id='contact-us' ref={sectionRef} className="bg-[#F8F9FA] scroll-mt-[90px] py-24 md:py-32 px-4 md:px-[8%] w-full overflow-hidden">
         
         {/* Container for content grid */}
         <div className="max-w-[1300px] mx-auto">
