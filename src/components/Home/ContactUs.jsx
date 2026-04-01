@@ -1,5 +1,6 @@
 "use client"
 import React, { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
 
 // --- Reusable Animated Fade-Up Wrapper ---
 const FadeUpSection = ({ children, delay = 0, isVisible, className = "" }) => (
@@ -13,8 +14,71 @@ const FadeUpSection = ({ children, delay = 0, isVisible, className = "" }) => (
   </div>
 );
 
+// --- Loading Spinner Icon ---
+const SpinnerIcon = () => (
+  <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+  </svg>
+);
+
+// --- Error Icon for Toast ---
+const ErrorXIcon = () => (
+  <svg className="w-6 h-6 text-red-500 shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+  </svg>
+);
+
+// --- Custom Gradient Toast Notification ---
+const CustomToast = ({ show, message, type, onClose }) => {
+  return (
+    // FIXED: Full-width invisible wrapper that centers the toast on mobile and aligns right on desktop
+    <div className="fixed top-8 left-0 right-0 z-[9999] flex justify-center px-4 pointer-events-none md:left-auto md:right-8 md:px-0">
+      
+      {/* Animated Toast Card */}
+      {/* On mobile: drops down from the top. On desktop: slides in from the right */}
+      <div className={`pointer-events-auto w-full max-w-[22rem] md:max-w-none md:w-96 transform transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        show 
+          ? 'translate-y-0 opacity-100 md:translate-x-0' 
+          : '-translate-y-12 opacity-0 md:translate-y-0 md:translate-x-[120%]'
+      }`}>
+        {/* Outer Wrapper for Gradient Border */}
+        <div className="relative rounded-xl p-[2px] w-full shadow-[0_10px_40px_rgba(0,0,0,0.1)]">
+          {/* The Animated Gradient Border */}
+          <div className={`absolute inset-0 rounded-xl ${
+            type === 'error' 
+            ? 'bg-gradient-to-r from-red-500 to-red-400' 
+            : 'bg-gradient-to-r from-[#06367b] via-[#2EC4FF] to-[#075ca6]'
+          } -z-10`}></div>
+          
+          {/* Inner White Box */}
+          <div className="bg-white rounded-[10px] p-4 flex items-start gap-3 relative z-10 w-full h-full">
+            {/* Only show icon if it's an error */}
+            {type === 'error' && <ErrorXIcon />}
+            
+            <div className="flex-1">
+              <h4 className={`text-xl font-bold ${type === 'error' ? 'text-red-500' : 'text-[#06367b]'}`}>
+                {type === 'error' ? 'Error' : 'Success!'}
+              </h4>
+              <p className="text-base text-gray-700 font-medium leading-relaxed mt-1">
+                {message}
+              </p>
+            </div>
+            <button onClick={onClose} className="text-gray-400 hover:text-gray-600 transition-colors p-1 -mt-1 -mr-1">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
 // --- Premium Form Input Component with Gradient Focus Border ---
-const ContactInput = ({ label, required, type = 'text', isTextArea = false }) => {
+const ContactInput = ({ label, required, type = 'text', isTextArea = false, name, value, onChange, disabled }) => {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
@@ -39,17 +103,27 @@ const ContactInput = ({ label, required, type = 'text', isTextArea = false }) =>
         {/* The actual Input Field */}
         {isTextArea ? (
           <textarea 
+            name={name}
+            value={value}
+            onChange={onChange}
+            required={required}
+            disabled={disabled}
             rows="6"
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
-            className="px-5 py-4 rounded-[10.5px] bg-white text-[#06367b] transition-all duration-300 resize-none outline-none w-full relative z-10"
+            className="px-5 py-4 rounded-[10.5px] bg-white text-[#06367b] disabled:bg-gray-50 disabled:text-gray-400 transition-all duration-300 resize-none outline-none w-full relative z-10"
           />
         ) : (
           <input 
             type={type}
+            name={name}
+            value={value}
+            onChange={onChange}
+            required={required}
+            disabled={disabled}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
-            className="px-5 py-4 rounded-[10.5px] bg-white text-[#06367b] transition-all duration-300 outline-none w-full relative z-10"
+            className="px-5 py-4 rounded-[10.5px] bg-white text-[#06367b] disabled:bg-gray-50 disabled:text-gray-400 transition-all duration-300 outline-none w-full relative z-10"
           />
         )}
       </div>
@@ -57,7 +131,7 @@ const ContactInput = ({ label, required, type = 'text', isTextArea = false }) =>
   );
 };
 
-// --- UPDATED: Solid/Filled White Icons for the Contact Card ---
+// --- Solid/Filled White Icons for the Contact Card ---
 const LocationIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" className="shrink-0 text-white">
     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
@@ -95,6 +169,69 @@ function ContactUs() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
+  // Form states
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  });
+  
+  // NEW: Loading & Toast States
+  const [isLoading, setIsLoading] = useState(false);
+  const [toast, setToast] = useState({ show: false, message: '', type: 'success' });
+
+  // Handle input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // Handle form submission
+  const handleSubmit = async(e) => {
+    e.preventDefault(); 
+    setIsLoading(true); // Start loading
+
+    try {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/contact/form`, formData);
+      
+      if (res.status === 200 || res.data.success) {
+        // Show Success Toast
+        setToast({ 
+          show: true, 
+          message: 'Message sent! We will get back to you soon from Ratnamik Metal India.', 
+          type: 'success' 
+        });
+        
+        // Clear Form
+        setFormData({
+          fullName: '', email: '', phone: '', subject: '', message: ''
+        });
+      }
+    } catch (error) {
+      // Show Error Toast
+      setToast({ 
+        show: true, 
+        message: 'Something went wrong while sending your message. Please try again later.', 
+        type: 'error' 
+      });
+    } finally {
+      setIsLoading(false); // Stop loading
+    }
+  };
+
+  // Auto-hide toast after 5 seconds
+  useEffect(() => {
+    if (toast.show) {
+      const timer = setTimeout(() => {
+        setToast((prev) => ({ ...prev, show: false }));
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast.show]);
+
+  // Scroll visibility observer
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -152,6 +289,14 @@ function ContactUs() {
         `
       }} />
 
+      {/* Render the Custom Toast Notification */}
+      <CustomToast 
+        show={toast.show} 
+        message={toast.message} 
+        type={toast.type} 
+        onClose={() => setToast(prev => ({ ...prev, show: false }))} 
+      />
+
       {/* Main Section - Clean Light Gray Background */}
       <section id='contact-us' ref={sectionRef} className="bg-[#F8F9FA] scroll-mt-[90px] py-24 md:py-32 px-4 md:px-[8%] w-full overflow-hidden">
         
@@ -189,22 +334,36 @@ function ContactUs() {
                     <p className="text-gray-500">Fill out the form below and our team will get back to you shortly.</p>
                   </div>
 
-                  <form className="flex flex-col gap-8">
+                  <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                      <ContactInput label="Full Name" required />
-                      <ContactInput label="Email Address" required type="email" />
-                      <ContactInput label="Phone Number" type="tel" />
-                      <ContactInput label="Subject" />
-                      <ContactInput label="Message" required isTextArea={true} />
+                      {/* Pass disabled state when loading */}
+                      <ContactInput label="Full Name" name="fullName" value={formData.fullName} onChange={handleChange} required disabled={isLoading} />
+                      <ContactInput label="Email Address" name="email" value={formData.email} onChange={handleChange} required type="email" disabled={isLoading} />
+                      <ContactInput label="Phone Number" name="phone" value={formData.phone} onChange={handleChange} type="tel" disabled={isLoading} />
+                      <ContactInput label="Subject" name="subject" value={formData.subject} onChange={handleChange} disabled={isLoading} />
+                      <ContactInput label="Message" name="message" value={formData.message} onChange={handleChange} required isTextArea={true} disabled={isLoading} />
                     </div>
 
                     {/* Left-aligned Premium Submit Button */}
                     <div className="flex justify-start mt-2">
-                      <button type="submit" className="group relative inline-flex items-center justify-center gap-3 px-10 py-4 font-bold text-white rounded-full overflow-hidden shadow-[0_4px_20px_rgba(46,196,255,0.2)] hover:shadow-[0_8px_30px_rgba(46,196,255,0.4)] hover:-translate-y-1 transition-all duration-300">
+                      <button 
+                        type="submit" 
+                        disabled={isLoading}
+                        className={`group relative inline-flex items-center justify-center gap-3 px-10 py-4 font-bold text-white rounded-full overflow-hidden shadow-[0_4px_20px_rgba(46,196,255,0.2)] hover:shadow-[0_8px_30px_rgba(46,196,255,0.4)] transition-all duration-300 ${isLoading ? 'opacity-90 cursor-not-allowed' : 'hover:-translate-y-1'}`}
+                      >
                         <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-[#06367b] via-[#2EC4FF] to-[#075ca6]"></div>
                         <span className="relative z-10 flex items-center gap-3 tracking-wide">
-                          <PaperPlaneIcon />
-                          Send Message
+                          {isLoading ? (
+                            <>
+                              <SpinnerIcon />
+                              Sending...
+                            </>
+                          ) : (
+                            <>
+                              <PaperPlaneIcon />
+                              Send Message
+                            </>
+                          )}
                         </span>
                       </button>
                     </div>
@@ -230,7 +389,6 @@ function ContactUs() {
                     {contactItems.map((item, idx) => (
                       <div key={idx} className="flex flex-row items-start gap-5 group">
                         
-                        {/* UPDATED: Solid icons, no background circle */}
                         <div className="mt-1 transition-transform duration-300 group-hover:scale-110 group-hover:text-[#2EC4FF]">
                           <item.Icon />
                         </div>
