@@ -24,3 +24,38 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+/* ===== Scrollbar Styling ===== */
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff; /* WHITE background */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #075ca6; /* your blue */
+  border-radius: 6px;
+  border: 2px solid #ffffff; /* matches track */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #054a86;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thick;
+  scrollbar-color: #075ca6 #ffffff;
+}
+
+/* Remove scrollbar arrows (top & bottom buttons) */
+::-webkit-scrollbar-button {
+  display: none;
+  height: 0;
+  width: 0;
+}
