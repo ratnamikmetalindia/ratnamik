@@ -1,5 +1,6 @@
 "use client"
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'next/navigation';
 
 // --- Premium Icons ---
 const ArrowLeft = () => (
@@ -45,6 +46,7 @@ const productsDatabase = {
                 1: {
                     id: "product1",
                     name: "Slip On Flanges (SORF Flanges)",
+                    slug: "slip-on-flanges-sorf-flanges",
                     image: "./images/flangs/SLIP ON FLANGES/SS_SLIP_ON_FLANGES.jpeg",
                     description:
                         "Slip On Flanges (SORF) are easy-to-install forged steel flanges widely used in piping systems. Manufactured by JAINAM FERRO ALLOYS in stainless steel, carbon steel, alloy steel, duplex, super duplex, and nickel alloys, these flanges ensure leak-proof connections and durability in industrial applications.",
@@ -87,6 +89,7 @@ const productsDatabase = {
                 2: {
                     id: "product2",
                     name: "Weld Neck Flanges (WNRF Flanges)",
+                    slug: "weld-neck-flanges-wnrf-flanges",
                     image: "./images/flangs/WELD NECK FLANGES/SS WELD NECK FLANGES.png",
                     description:
                         "Weld Neck Flanges (WNRF) are forged flanges designed for high-pressure and high-temperature applications. Manufactured by JAINAM FERRO ALLOYS as per ASME B16.5, B16.47, MSS SP44, DIN, BS, and EN standards, these flanges ensure leak-proof welded joints and provide reinforcement to piping systems.",
@@ -133,6 +136,7 @@ const productsDatabase = {
                 3: {
                     id: "product3",
                     name: "Long Weld Neck Flanges (WNRF)",
+                    slug: "long-weld-neck-flanges-wnrf",
                     image: "./images/flangs/LONG_WELD/CS LONG WELD NECK FLANGES.jpg",
                     description:
                         "Long Weld Neck Flanges (WNRF) are engineered to provide strong, leak-proof connections in piping systems. Manufactured by JAINAM FERRO ALLOYS in stainless steel, carbon steel, alloy steel, duplex, super duplex, nickel, and copper alloys, these flanges offer high strength, corrosion resistance, and durability for industrial applications.",
@@ -167,6 +171,7 @@ const productsDatabase = {
                 4: {
                     id: "product4",
                     name: "AWWA Flanges",
+                    slug: "awwa-flanges",
                     image: "./images/flangs/AWWA_FLANGES/Awwa Flanges.jpg",
                     description:
                         "AWWA Flanges (American Water Works Association) are designed for potable water pipelines and waterworks systems. Manufactured by JAINAM FERRO ALLOYS in stainless steel, carbon steel, alloy steel, duplex, super duplex, nickel, and copper alloys, these flanges ensure strength, corrosion resistance, and leak-proof performance in various industrial applications.",
@@ -201,6 +206,7 @@ const productsDatabase = {
                 5: {
                     id: "product5",
                     name: "Body Flanges",
+                    slug: "body-flanges",
                     image: "./images/flangs/Body Flanges/Body Flanges.jpg",
                     description:
                         "Body Flanges are an integral part of industrial projects, designed to provide strength, ease of installation, and cost efficiency. Manufactured by JAINAM FERRO ALLOYS in stainless steel, carbon steel, alloy steel, duplex, super duplex, nickel, and copper alloys, these flanges are suitable for structural and piping applications, ensuring durability and flexibility.",
@@ -235,6 +241,7 @@ const productsDatabase = {
                 6: {
                     id: "product6",
                     name: "Blind Flanges (BLRF Flanges)",
+                    slug: "blind-flanges-blrf-flanges",
                     image: "./images/flangs/BLIND FLANGES/Alloy Steel Blind Flanges.jpg",
                     description:
                         "Blind flanges are fundamental components used to close the ends of piping systems, providing strong reinforcements and leak-proofing pipelines. JAINAM FERRO ALLOYS manufactures stainless steel, alloy steel, carbon steel, duplex, super duplex, nickel alloy, and copper alloy blind flanges, ensuring durability and reliable sealing in critical applications.",
@@ -282,10 +289,11 @@ const productsDatabase = {
                         "Argentina", "Chile", "Brazil", "Colombia", "Paraguay",
                         "Ghana", "South Africa"
                     ]
-                },               
+                },                
                 7: {
                     id: "product7",
                     name: "Threaded Flanges",
+                    slug: "threaded-flanges",
                     image: "./images/flangs/THREADED FLANGES/Alloy Steel Threaded Flanges.jpg",
                     description:
                         "Threaded flanges are designed to connect pipes by screwing them onto a male pipe thread without welding. JAINAM FERRO ALLOYS manufactures stainless steel, alloy steel, carbon steel, duplex, super duplex, nickel alloy, and copper alloy threaded flanges that are durable, corrosion-resistant, and suitable for high-pressure applications. They are widely used in industries where quick assembly and disassembly are required.",
@@ -337,6 +345,7 @@ const productsDatabase = {
                 8: {
                     id: "product8",
                     name: "DIN Flanges",
+                    slug: "din-flanges",
                     image: "./images/flangs/DIN FLANGES/DIN PN-10 SS Slip On Flanges.jpg",
                     description:
                         "DIN standard flanges are widely used for connecting pipes, valves, pumps, and other equipment to form a piping system. They provide easy access for inspection, cleaning, and modifications. JAINAM FERRO ALLOYS is a leading manufacturer and exporter of DIN flanges including slip-on, welding neck, lap joint, blind, socket weld, and reducing flanges. These flanges are manufactured as per international standards ensuring durability, strength, and precision.",
@@ -356,7 +365,7 @@ const productsDatabase = {
                         { parameter: "Testing", specification: "Hardness, Chemical Composition, Flaring, Flattening, Radiography, Third Party Inspection" }
                     ],
                     gallery: [
-                       "./images/flangs/DIN FLANGES/DIN Carbon Steel Flanges.jpg",
+                        "./images/flangs/DIN FLANGES/DIN Carbon Steel Flanges.jpg",
                         "./images/flangs/DIN FLANGES/DIN PN-10 SS Slip On Flanges.jpg",
                         "./images/flangs/DIN FLANGES/DIN PN6 PN40 Flanges.jpg",
                     ],
@@ -400,6 +409,7 @@ const productsDatabase = {
                 9: {
                     id: "product9",
                     name: "Paddle Blind Flanges",
+                    slug: "paddle-blind-flanges",
                     image: "./images/flangs/PADDLE BLANK FLANGES/Hydrotest Flanges.jpg",
                     description:
                         "JAINAM FERRO ALLOYS manufactures and exports high-quality Paddle Blind Flanges, Paddle Blank Flanges, Hydro Blinds Flanges, Blind Rack Flanges, and Slip Blinds Flanges. These flanges are designed for easy isolation of piping systems during maintenance or inspection. Fabricated using premium raw materials and manufactured under strict quality guidance, Paddle Blind Flanges offer strength, dimensional accuracy, and corrosion resistance, making them suitable for various industries worldwide.",
@@ -464,6 +474,7 @@ const productsDatabase = {
                 10: {
                     id: "product10",
                     name: "Paddle Spacer Flanges",
+                    slug: "paddle-spacer-flanges",
                     image: "./images/flangs/PADDLE SPACER FLANGES/Paddle Spacer Flanges.jpg",
                     description:
                         "JAINAM FERRO ALLOYS manufactures and exports high-quality Paddle Spacer Flanges, Spacer Blind Flanges, Hydro Blinds Flanges, and Ring Spacer Flanges. These flanges are widely used for isolation and spacing in pipelines, ensuring safe maintenance and operational flexibility. Fabricated with premium raw materials, Paddle Spacer Flanges are known for their strength, corrosion resistance, and dimensional accuracy, making them ideal for high-pressure and high-temperature applications.",
@@ -528,6 +539,7 @@ const productsDatabase = {
                 11: {
                     id: "product11",
                     name: "Spectacle Blind Flanges",
+                    slug: "spectacle-blind-flanges",
                     image: "./images/flangs/SPECTACLE BLIND FLANGES/SPECTACLE BLIND FLANGES.jpg",
                     description:
                         "JAINAM FERRO ALLOYS manufactures and exports high-quality Spectacle Blind Flanges, Alloy 20 Spectacle Blind Flanges, SS Spectacle Blind Flanges, and Duplex Steel Spectacle Blind Flanges. These flanges are designed to provide reliable isolation in pipelines during maintenance or inspection. Fabricated with premium raw materials and tested under strict quality standards, Spectacle Blind Flanges offer strength, corrosion resistance, and precise dimensional accuracy for a wide range of industries worldwide.",
@@ -592,6 +604,7 @@ const productsDatabase = {
                 12: {
                     id: "product12",
                     name: "Ring Type Joint (RTJ) Flanges",
+                    slug: "ring-type-joint-rtj-flanges",
                     image: "./images/flangs/RING TYPE JOINT FLANGES/CS Ring Type Joint Flanges.jpg",
                     description:
                         "JAINAM FERRO ALLOYS manufactures and exports high-quality Ring Type Joint (RTJ) Flanges, ASTM A182 RTJ Flanges, Titanium RTJ Flanges, CS Ring Type Joint Flanges, Alloy Steel RTJ Flanges, Hastelloy RTJ Flanges, and Nickel RTJ Flanges. These flanges are engineered for high-pressure, high-temperature applications, ensuring leak-proof and durable connections. Fabricated with premium raw materials and tested under strict quality standards, RTJ Flanges offer exceptional corrosion resistance and dimensional accuracy suitable for various industries worldwide.",
@@ -656,6 +669,7 @@ const productsDatabase = {
                 13: {
                     id: "product13",
                     name: "Nipo Flanges",
+                    slug: "nipo-flanges",
                     image: "./images/flangs/Nipo Flange/CS Ring Type Joint Flanges.jpg",
                     description:
                         "JAINAM FERRO ALLOYS manufactures and exports high-quality Nipo Flanges, ASME/ANSI B16.5 Nipo Flanges, Super Duplex Steel Nipo Flanges, Stainless Steel Nipo Flanges, Alloy Steel Nipo Flanges, Hastelloy Nipo Flanges, and ASTM A182 Nipo Flanges. These flanges are designed for branch connections and are a combination of a welding neck flange made in a single welded piece. Nipo Flanges ensure robust and leak-proof connections and are widely used in seawater cooling systems, chemical processing, oil refineries, pulp & paper processing, and other high-pressure applications.",
@@ -721,6 +735,7 @@ const productsDatabase = {
                 14: {
                     id: "product14",
                     name: "Pipe Tees",
+                    slug: "pipe-tees",
                     image: "./images/Buttweld Fittings/Tee/SS Cross Tee.jpg",
                     description:
                         "JAINAM FERRO ALLOYS is a leading manufacturer, supplier, stockist, and exporter of Pipe Tees, including Stainless Steel Buttweld Tees, Copper Nickel Butt weld Tees, Carbon Steel Equal Tees, Alloy Steel Unequal Tees, and SS Reducing Tees. Designed with a 90° branch connection to the main run, our Pipe Tees are available in equal and unequal dimensions. With 25+ years of industry experience, we provide durable, corrosion-resistant, and cost-effective Tee fittings widely used in chemical, petrochemical, refining, oil & gas, and paper & pulp industries.",
@@ -740,7 +755,7 @@ const productsDatabase = {
                         { parameter: "Standards", specification: "ANSI/ASME B16.9, B16.28" }
                     ],
                     gallery: [
-                       "./images/Buttweld Fittings/Tee/Carbon Steel Equal Pipe Tee.jpg",
+                        "./images/Buttweld Fittings/Tee/Carbon Steel Equal Pipe Tee.jpg",
                         "./images/Buttweld Fittings/Tee/SS Cross Tee.jpg",
                         "./images/Buttweld Fittings/Tee/STAINLESS STEEL TEE.jpg",
                     ],
@@ -788,6 +803,7 @@ const productsDatabase = {
                 15: {
                     id: "product15",
                     name: "Cross Reducers",
+                    slug: "cross-reducers",
                     image: "./images/Buttweld Fittings/CONCENTRIC REDUCER/Duplex Steel Concentric Reducer.jpg",
                     description:
                         "JAINAM FERRO ALLOYS is a trusted manufacturer, supplier, stockist, and exporter of Pipe Reducers, including Concentric and Eccentric Reducers. Our reducers are designed to connect pipe sections of different diameters, maintaining efficient flow and minimizing turbulence. With over 25 years of experience, we provide Stainless Steel, Carbon Steel, Alloy Steel, Nickel Alloy, Duplex, and Copper Nickel Reducers that meet international standards such as ASME, ANSI, ASTM, and MSS. These reducers are widely used in chemical, oil & gas, petrochemical, and pharmaceutical industries for reliable and leak-proof connections.",
@@ -854,6 +870,7 @@ const productsDatabase = {
                 16: {
                     id: "product16",
                     name: "Stainless Steel Tube",
+                    slug: "stainless-steel-tube",
                     shortDescription: "High-grade stainless steel tubes designed for demanding industrial applications with excellent corrosion resistance and customizable options.",
                     image:  "./images/Buttweld Fittings/ECCENTRIC REDUCER/Duplex Steel Concentric Reducer.jpg",
                     gallery: [
@@ -904,6 +921,7 @@ const productsDatabase = {
                 17: {
                     id: "product17",
                     name: "ASME / ANSI B16.9 Barred Tee",
+                    slug: "asme-ansi-b16-9-barred-tee",
                     shortDescription: "High-quality barred tees manufactured with precision for industrial and racing hose applications. Available in multiple materials including stainless steel, Hastelloy, Inconel, and nickel alloys.",
                     image: "./images/Buttweld Fittings/Barred Tees/Buttweld Barred Tee.jpg",
                     gallery: [
@@ -957,6 +975,7 @@ const productsDatabase = {
                 18: {
                     id: "product18",
                     name: "ANSI B16.28 5D/6D Pipe Bend",
+                    slug: "ansi-b16-28-5d-6d-pipe-bend",
                     shortDescription: "High precision 5D and 6D pipe bends manufactured with induction bending technology offering smooth flow, corrosion resistance, and durability for industrial and petrochemical applications.",
                     image:  "./images/Buttweld Fittings/BEND/SS 6D Bend.jpg",
                     gallery: [
@@ -1015,6 +1034,7 @@ const productsDatabase = {
                 19: {
                     id: "product19",
                     name: "ASTM A403 Stainless Steel Reducing Tee",
+                    slug: "astm-a403-stainless-steel-reducing-tee",
                     shortDescription: "Premium ASTM A403 standard stainless steel reducing tees designed for efficient piping with high impact strength, corrosion resistance, and turbulence-free flow.",
                     image:  "./images/Buttweld Fittings/Butt Weld Reducing Tee/Reducing Tee.jpg",
                     gallery: [
@@ -1074,6 +1094,7 @@ const productsDatabase = {
                 20: {
                     id: "product20",
                     name: "STUBEND",
+                    slug: "stubend",
                     shortDescription: "Precision-engineered ANSI B16.28 elbows used to change fluid flow direction with superior durability, corrosion resistance, and compliance with industrial standards.",
                     image: "./images/Buttweld Fittings/ELBOW/Carbon Steel 45° Elbow.jpg",
                     gallery: [
@@ -1130,6 +1151,7 @@ const productsDatabase = {
                 21: {
                     id: "product21",
                     name: "ANSI B16.28 Reducing Elbow",
+                    slug: "ansi-b16-28-reducing-elbow",
                     shortDescription: "High-quality reducing elbows conforming to ANSI B16.28 standard, designed for connecting pipes of different sizes with reliable performance in diverse industrial applications.",
                     image: "./images/Buttweld Fittings/Reducing Elbow/Carbon Steel 45° Reducing Elbow.jpg",
                     gallery: [
@@ -1187,10 +1209,11 @@ const productsDatabase = {
                 22: {
                     id: "product22",
                     name: "ANSI B16.28 Stainless Steel Cross Tee",
+                    slug: "ansi-b16-28-stainless-steel-cross-tee",
                     shortDescription: "Premium ANSI B16.28 stainless steel cross tees manufactured with precision to provide durable, corrosion-resistant, and turbulence-free piping junction solutions.",
                     image: "./images/Buttweld Fittings/CROSS TEE/SS Cross Tee.jpg",
                     gallery: [
-                       "./images/Buttweld Fittings/CROSS TEE/Carbon Steel Cross Tee.jpg",
+                        "./images/Buttweld Fittings/CROSS TEE/Carbon Steel Cross Tee.jpg",
                             "./images/Buttweld Fittings/CROSS TEE/SS Cross Tee.jpg",
                                 "./images/Buttweld Fittings/CROSS TEE/Stainless Steel Cross Tee.jpg",
                     ],
@@ -1257,6 +1280,7 @@ const productsDatabase = {
                 23: {
                     id: "product23",
                     name: "ANSI B16.28 Swage Nipple",
+                    slug: "ansi-b16-28-swage-nipple",
                     shortDescription: "Durable and precision-engineered ANSI B16.28 swage nipples available in concentric and eccentric forms, made with ASTM A403 stainless steel and other premium materials for high-performance piping systems.",
                     image: "./images/Buttweld Fittings/Swage Nipple/SS Swage Nipple.webp",
                     gallery: [
@@ -1329,6 +1353,7 @@ const productsDatabase = {
                 29: {
                     id: "product29",
                     name: "ANSI B16.9 Forged Concentric Reducer",
+                    slug: "ansi-b16-9-forged-concentric-reducer",
                     shortDescription: "High-quality forged concentric reducers compliant with ASTM and ASME standards, designed for smooth pipe size transitions with superior strength, corrosion resistance, and durability.",
                     image: "./images/Forged Fittings/FORGED REDUCER/Forged Concentric Reducer.jpg",
                     gallery: [
@@ -1392,6 +1417,7 @@ const productsDatabase = {
                 24: {
                     id: "product24",
                     name: "Stainless Steel Insulation Gasket Kits",
+                    slug: "stainless-steel-insulation-gasket-kits",
                     shortDescription: "Comprehensive insulation gasket kits designed to provide leak-proof, corrosion-free flange connections and prevent electrolytic or cathodic corrosion in piping systems.",
                     image: "./images/COMPRESSION TUBE FITTINGS/MALE CONNECTOR/Male Connector.jpg",
                     gallery: [
@@ -1459,6 +1485,7 @@ const productsDatabase = {
                 25: {
                     id: "product25",
                     name: "Parker 8-6 HBZ-SS Reducing Union",
+                    slug: "parker-8-6-hbz-ss-reducing-union",
                     shortDescription: "High precision, single ferrule stainless steel reducing unions by Parker featuring robust construction, corrosion resistance, and leak-free performance for instrumentation tubing.",
                     image: "./images/COMPRESSION TUBE FITTINGS/TUBE TO UNION/Tube To Union.jpg",
                     gallery: [
@@ -1509,6 +1536,7 @@ const productsDatabase = {
                 26: {
                     id: "product26",
                     name: "Forged Stainless Steel Tube Union Elbow",
+                    slug: "forged-stainless-steel-tube-union-elbow",
                     shortDescription: "Robust forged and stainless steel tube union elbows manufactured for reliable piping connections, featuring corrosion resistance, dimensional accuracy, and versatile applications across industries.",
                     image: "./images/COMPRESSION TUBE FITTINGS/UNION ELBOW/SS Union Elbow.jpg",
                     gallery: [
@@ -1562,6 +1590,7 @@ const productsDatabase = {
                 27: {
                     id: "product27",
                     name: "Corten Steel Panels",
+                    slug: "corten-steel-panels",
                     shortDescription: "Durable, weathering steel panels made with high-performance alloys including copper, nickel, chromium, phosphorus, and manganese. Engineered for exceptional corrosion resistance, strength, and aesthetic patina formation.",
                     image: "./images/COMPRESSION TUBE FITTINGS/VALVES/CS Check Valves.jpg",
                     gallery: [
@@ -1625,6 +1654,7 @@ const productsDatabase = {
                 28: {
                     id: "product28",
                     name: "Forged Cross Pipe Fittings",
+                    slug: "forged-cross-pipe-fittings",
                     shortDescription: "High-quality forged cross fittings manufactured to ASTM and ASME standards, designed for durable service in piping systems across diverse industries.",
                     image: "./images/Forged Fittings/FORGED TEE/Socketweld Forged Tee.jpg",
                     gallery: [
@@ -1679,6 +1709,7 @@ const productsDatabase = {
                 30: {
                     id: "product30",
                     name: "Forged Cross Pipe Fittings",
+                    slug: "forged-cross-pipe-fitting",
                     shortDescription: "Durable forged cross pipe fittings manufactured to ASTM and ASME standards, designed for high-pressure applications with excellent corrosion resistance and dimensional accuracy.",
                     image: "./images/Forged Fittings/FORGED CROSS/Forged Threaded Cross.jpg",
                     gallery: [
@@ -1743,6 +1774,7 @@ const productsDatabase = {
                 31: {
                     id: "product31",
                     name: "ANSI B16.9 Forged Welding Outlets",
+                    slug: "ansi-b16-9-forged-welding-outlets",
                     shortDescription: "High quality forged welding outlets manufactured per ANSI B16.9 standards, designed as branch connection fittings providing a reliable 90° outlet with beveled ends for secure welding.",
                     image: "./images/Forged Fittings/WELDING OUTLET/SS Welding Outlets.jpg",
                     gallery: [
@@ -1797,6 +1829,7 @@ const productsDatabase = {
                 32: {
                     id: "product32",
                     name: "ASTM A182 Nipple Outlets",
+                    slug: "astm-a182-nipple-outlets",
                     shortDescription: "High-quality forged nipple outlets manufactured to ASTM A182 and ASME standards, providing reliable branch connection points with threaded or plain ends for various industrial applications.",
                     image: "./images/Forged Fittings/NIPPLE OUTLET/SS Nipple Outlet.jpg",
                     gallery: [
@@ -1849,6 +1882,7 @@ const productsDatabase = {
                 33: {
                     id: "product33",
                     name: "ASTM A182 Nipple Outlets",
+                    slug: "astm-a182-nipple-outlet",
                     shortDescription: "Precision forged ASTM A182 nipple outlets suitable for high-performance piping systems, made from stainless steel, alloy steel, carbon steel, and duplex grades ensuring corrosion resistance and durability.",
                     image: "./images/Forged Fittings/Sweep Outlet/SS Sweep Outlet.jpg",
                     gallery: [
@@ -1901,6 +1935,7 @@ const productsDatabase = {
                 34: {
                     id: "product34",
                     name: "ASTM A182 Flange Outlets",
+                    slug: "astm-a182-flange-outlets",
                     shortDescription: "Premium ASTM A182 flange outlets manufactured with superior corrosion resistance and mechanical strength for high-pressure and high-temperature industrial piping applications.",
                     image: "./images/Forged Fittings/Flange Outlets/SS Flange Outlets.jpg",
                     gallery: [
@@ -1956,6 +1991,7 @@ const productsDatabase = {
                 35: {
                     id: "product35",
                     name: "Stainless Steel Threaded Outlets",
+                    slug: "stainless-steel-threaded-outlets",
                     shortDescription: "High-quality ASTM A182 threaded outlets manufactured for seamless pipe branch connections without welding, featuring corrosion resistance, durability, and precision threading.",
                     image: "./images/Forged Fittings/Threaded Outlet/Threaded Outlet.jpg",
                     gallery: [
@@ -2008,6 +2044,7 @@ const productsDatabase = {
                 36: {
                     id: "product36",
                     name: "Elbow Outlet Pipe Fittings",
+                    slug: "elbow-outlet-pipe-fittings",
                     shortDescription: "Precision forged ASTM A182 elbow outlets designed for reliable branch connections in piping systems, featuring high corrosion resistance, dimensional accuracy, and robustness for demanding industrial environments.",
                     image: "./images/Forged Fittings/Elbow Outlet/Elbow Outlets.jpg",
                     gallery: [
@@ -2065,6 +2102,7 @@ const productsDatabase = {
                 37: {
                     id: "product37",
                     name: "ASTM A234 WP11 Pipe Reducing Tee",
+                    slug: "astm-a234-wp11-pipe-reducing-tee",
                     shortDescription: "Durable ASTM A234 WP11 pipe reducing tees manufactured to ASME B16.9 standards, designed for smooth flow transitions with excellent corrosion resistance and high mechanical strength.",
                     image: "./images/Forged Fittings/Forged Fittings - Reducing Tee/Carbon Steel Reducing Tee.jpg",
                     gallery: [
@@ -2118,6 +2156,7 @@ const productsDatabase = {
                 38: {
                     id: "product38",
                     name: "ASTM A325 Hex Bolts",
+                    slug: "astm-a325-hex-bolts",
                     shortDescription: "High strength ASTM A325 hex bolts with six-sided heads, designed for structural applications and manufactured in a variety of grades, materials, and corrosion-resistant finishes.",
                     image: "./images/Fasteners/Hex Bolts/Hex Bolt.jpg",
                     gallery: [
@@ -2171,6 +2210,7 @@ const productsDatabase = {
                 39: {
                     id: "product39",
                     name: "ASTM A325 Heavy Hex Nuts",
+                    slug: "astm-a325-heavy-hex-nuts",
                     shortDescription: "High strength ASTM A325 heavy hex nuts manufactured to ASME B18.2.6 dimensions, designed for structural bolting with enhanced thickness, larger head, and compatibility with heavy hex bolts.",
                     image: "./images/Fasteners/HEAVY HEX NUTS/Steel Heavy Hex Nuts.jpg",
                     gallery: [
@@ -2221,6 +2261,7 @@ const productsDatabase = {
                 40: {
                     id: "product40",
                     name: "ASTM A193 B7 Stud Bolts",
+                    slug: "astm-a193-b7-stud-bolts",
                     shortDescription: "High-strength ASTM A193 B7 alloy steel stud bolts, fully threaded with nuts on both ends, heat-treated for mechanical integrity in high-temperature and high-pressure industrial applications.",
                     image: "./images/Fasteners/STUD BOLTS/Stainless Steel Studs.jpg",
                     gallery: [
@@ -2272,6 +2313,7 @@ const productsDatabase = {
                 41: {
                     id: "product41",
                     name: "ASTM A325 Washers",
+                    slug: "astm-a325-washers",
                     shortDescription: "Precision-engineered ASTM A325 washers, including flat, lock, spring, square, and fender types, designed to distribute loads, prevent loosening, and protect surfaces in structural assemblies and fastener applications.",
                     image: "./images/Fasteners/WASHERS/SS Flat Washer.jpg",
                     gallery: [
@@ -2320,6 +2362,7 @@ const productsDatabase = {
                 42: {
                     id: "product42",
                     name: "Stainless Steel Anchor & Foundation Bolts",
+                    slug: "stainless-steel-anchor-foundation-bolts",
                     shortDescription: "High-strength anchor and foundation bolts manufactured to ASTM, DIN, and ISO standards, designed to securely affix structures to concrete or masonry in demanding industrial environments.",
                     image: "./images/Fasteners/Anchor Bolts/Sleeve Anchor Bolts.jpg",
                     gallery: [
@@ -2370,12 +2413,13 @@ const productsDatabase = {
                 43: {
                     id: "product43",
                     name: "ASTM A325 Eye Bolts",
+                    slug: "astm-a325-eye-bolts",
                     shortDescription: "Industrial grade ASTM A325 eye bolts manufactured with precision for lifting, securing, and rigging applications, made from stainless steel, alloy, carbon steel, and nickel alloys for superior strength and corrosion resistance.",
                     image: "./images/Fasteners/Eye Bolts/Shoulder Eye Bolt.jpg",
                     gallery: [
                         "./images/Fasteners/Eye Bolts/Marine Eye Bolts.jpg",
                         "./images/Fasteners/Eye Bolts/Shoulder Eye Bolt.jpg",
-                        "./images/Fasteners/Eye Bolts/SS Eye Bolts.jpg",       
+                        "./images/Fasteners/Eye Bolts/SS Eye Bolts.jpg",        
                     ],
                     features: [
                         "Material Grades: Stainless Steel (AISI 302, 304, 316, 310, 317, 321, 347, 904L), Duplex & Super Duplex (ASTM A815 UNS S31803, S32205), Carbon Steel (ASTM A307, A193), Alloy Steel (ASTM A193 B7, B16), Nickel Alloys (Monel, Inconel, Hastelloy, Alloy 20)",
@@ -2422,6 +2466,7 @@ const productsDatabase = {
                 44: {
                     id: "product44",
                     name: "ASTM A325 Fasteners",
+                    slug: "astm-a325-fasteners",
                     shortDescription: "High-strength ASTM A325 fasteners designed for structural applications, manufactured to meet international standards with excellent mechanical properties, corrosion resistance, and durability.",
                     image: "./images/Fasteners/HILTI FASTENERS/Anchor.jpg",
                     gallery: [
@@ -2470,6 +2515,7 @@ const productsDatabase = {
                 45: {
                     id: "product45",
                     name: "ASTM A325 U Bolts",
+                    slug: "astm-a325-u-bolts",
                     shortDescription: "High-quality ASTM A325 U Bolts manufactured for structural fastening and support applications, available in stainless steel, carbon steel, alloy steel, and nickel alloys, designed for durability and corrosion resistance.",
                     image: "./images/Fasteners/U BOLTS/Stainless Steel U Bolt.jpg",
                     gallery: [
@@ -2517,6 +2563,7 @@ const productsDatabase = {
                 46: {
                     id: "product46",
                     name: "V Shaped Refractory Anchors",
+                    slug: "v-shaped-refractory-anchors",
                     shortDescription: "Durable V-shaped refractory anchors made from stainless steel, high nickel alloys like Inconel and Incoloy, designed to support refractory linings in high-temperature industrial furnaces and chemical plants.",
                     image: "./images/REFRACTORY ANCHORS/V ANCHORS/Refractory V Anchors.jpg",
                     gallery: [
@@ -2564,6 +2611,7 @@ const productsDatabase = {
                 47: {
                     id: "product47",
                     name: "Stainless Steel Y Type Refractory Anchors",
+                    slug: "stainless-steel-y-type-refractory-anchors",
                     shortDescription: "Robust Y-shaped refractory anchors made from stainless steel grades including 304, 304L, 316, 316L, 310, 321, 347, designed for high temperature and high pressure industrial applications, retaining castable and brick linings.",
                     image: "./images/REFRACTORY ANCHORS/Y TYPE ANCHORS/Refractory Y Type Anchors.jpg",
                     gallery: [
@@ -2617,6 +2665,7 @@ const productsDatabase = {
                 48: {
                     id: "product48",
                     name: "U Type Refractory Anchors",
+                    slug: "u-type-refractory-anchors",
                     shortDescription: "Durable U-shaped refractory anchors manufactured from stainless steel and high nickel alloys like Incoloy 800, 800H, 800HT, Inconel 600, and Monel 400, designed for supporting refractory linings in industrial furnaces and chemical reactors.",
                     image: "./images/REFRACTORY ANCHORS/U ANCHORS/SS U ANCHORS.jpg",
                     gallery: [
@@ -2664,6 +2713,7 @@ const productsDatabase = {
                 49: {
                     id: "product49",
                     name: "Customized Stainless Steel Refractory Anchors",
+                    slug: "customized-stainless-steel-refractory-anchors",
                     shortDescription: "Customized refractory anchors made from high-grade stainless steel such as 304, 304L, 316, 316L, 321, suitable for supporting various refractory linings in high-temperature industrial applications including chemical and power plants.",
                     image:  "./images/REFRACTORY ANCHORS/CUSTOMIZE REFRACTORY ANCHORS/Refractory Anchors UV Type.jpg",
                     gallery: [
@@ -2712,6 +2762,7 @@ const productsDatabase = {
                 50: {
                     id: "product50",
                     name: "Carbon Steel Forged Rings ASTM A105",
+                    slug: "carbon-steel-forged-rings-astm-a105",
                     shortDescription: "Robust carbon steel forged rings manufactured from ASTM A105 grade steel, offering high tensile strength, corrosion resistance, and suitability for industrial furnaces, thermal processing, and steel production centers.",
                     image: "./images/FORGING PRODUCTS/FORGED RINGS/Carbon Steel Forged Ring.jpg",
                     gallery: [
@@ -2764,6 +2815,7 @@ const productsDatabase = {
                 51: {
                     id: "product51",
                     name: "ASTM A105 Carbon Steel Rotor Shafts",
+                    slug: "astm-a105-carbon-steel-rotor-shafts",
                     shortDescription: "Heavy-duty rotor shafts manufactured from ASTM A105 carbon steel, stainless steel grades (304, 304L, 316, 316L, 321, 347, 904L), and alloy steel grades F22, EN8, designed for power generation, chemical, and industrial applications.",
                     image: "./images/FORGING PRODUCTS/ROTER SHAFT/ROTER SHAFT.jpg",
                     gallery: [
@@ -2811,6 +2863,7 @@ const productsDatabase = {
                 52: {
                     id: "product52",
                     name: "Stainless Steel and Carbon Steel Propeller Shafts & Forged Round Bars",
+                    slug: "stainless-steel-and-carbon-steel-propeller-shafts-forged-round-bars",
                     shortDescription: "Premium stainless steel and carbon steel propeller shafts and forged round bars manufactured to precise dimensions, offering high corrosion resistance, mechanical strength, and versatility for marine, industrial and structural applications.",
                     image: "./images/FORGING PRODUCTS/ROUND BARS/CS Forged Round Bar.jpg",
                     gallery: [
@@ -2859,6 +2912,7 @@ const productsDatabase = {
                 53: {
                     id: "product53",
                     name: "Customized Stainless Steel and Carbon Steel Forgings",
+                    slug: "customized-stainless-steel-and-carbon-steel-forgings",
                     shortDescription: "Precision-engineered custom forgings manufactured from stainless steel (304, 304L, 316, 316L, 321, 347, 904L) and carbon steel (A105, A350, EN8, EN9) for diverse industrial applications including automotive, oil & gas, and chemical processing.",
                     image: "./images/FORGING PRODUCTS/CUSTOMIZE FORGING/Customize Hot Forging.jpg",
                     gallery: [
@@ -2906,6 +2960,7 @@ const productsDatabase = {
                 54: {
                     id: "product54",
                     name: "Stainless Steel Insulation Gasket Kits",
+                    slug: "stainless-steel-insulation-gasket-kits",
                     shortDescription: "Complete insulation gasket kits made from high-grade stainless steel such as SS 304, 304L, 316, 316L, 321, 347, and 904L, designed to electrically isolate flanged connections and prevent galvanic corrosion in piping systems.",
                     image: "./images/GASKETS/INSULATION GASKET KITS/Monel Insulation Gasket.jpg",
                     gallery: [
@@ -2953,6 +3008,7 @@ const productsDatabase = {
                 55: {
                     id: "product55",
                     name: "Spiral Wound Gaskets",
+                    slug: "spiral-wound-gaskets",
                     shortDescription: "Durable spiral wound gaskets constructed by spirally winding metallic strips with soft fillers, available in stainless steel and high nickel alloys, suitable for fluctuating pressures and temperatures in industrial piping and refinery applications.",
                     image: "./images/GASKETS/SPIRAL WOUND GASKETS/Spiral Wound Gaskets_.jpg",
                     gallery: [
@@ -3001,6 +3057,7 @@ const productsDatabase = {
                 56: {
                     id: "product56",
                     name: "Alloy 20 and Stainless Steel Ring Type Joint Gaskets",
+                    slug: "alloy-20-and-stainless-steel-ring-type-joint-gaskets",
                     shortDescription: "Precision-engineered alloy 20 and stainless steel ring type joint (RTJ) gaskets designed for high temperature and high pressure applications, widely used in oilfields, petrochemical, and refinery industries for leak-proof flanged connections.",
                     image: "./images/GASKETS/RING JOINT TYPE GASKETS/RING JOINT TYPE GASKETS.jpg",
                     gallery: [
@@ -3047,6 +3104,7 @@ const productsDatabase = {
                 57: {
                     id: "product57",
                     name: "SS 316 and High Nickel Octagonal Ring Type Joint Gaskets",
+                    slug: "ss-316-and-high-nickel-octagonal-ring-type-joint-gaskets",
                     shortDescription: "High-performance octagonal ring type joint gaskets manufactured from stainless steel (316, 316L, 321, 347, 904L) and high-grade nickel alloys (Monel 400, K500, Inconel 600, 625), designed for robust sealing in high-pressure, high-temperature industrial applications.",
                     image: "./images/GASKETS/OCTOGONAL GASKETS/OCTOGONAL GASKETS.jpg",
                     gallery: [
@@ -3095,6 +3153,7 @@ const productsDatabase = {
                 58: {
                     id: "product58",
                     name: "Stainless Steel Graphite Filler Gaskets",
+                    slug: "stainless-steel-graphite-filler-gaskets",
                     shortDescription: "High-quality graphite filler gaskets featuring stainless steel facings, designed for superior sealing in high-temperature and high-pressure applications, widely used in petrochemical, pharmaceutical, and power industries.",
                     image: "./images/GASKETS/GRAPHITE FILLER GASKETS/Monel Graphite Filler Gaskets.jpg",
                     gallery: [
@@ -3144,6 +3203,7 @@ const productsDatabase = {
                 59: {
                     id: "product59",
                     name: "Stainless Steel Designer Sheets",
+                    slug: "stainless-steel-designer-sheets",
                     shortDescription: "Premium stainless steel designer sheets with diverse finishes including gold mirror, gold hairline, etching, and black hairline, manufactured from grade 304 stainless steel and available in custom sizes and thicknesses.",
                     image: "./images/DESIGNER SHEETS/SS Designer Sheets.png",
                     gallery: [
@@ -3193,12 +3253,13 @@ const productsDatabase = {
                 60: {
                     id: "product60",
                     name: "Corten Steel Panels",
+                    slug: "corten-steel-panels",
                     shortDescription: "Durable Corten steel panels made from weathering steel alloys containing copper, nickel, chromium, phosphorus, and manganese, noted for outstanding corrosion resistance, strength, and natural protective rust patina formation.",
                     image: "./images/OTHER/Corten Steel Panels/CORTEN PANEL.jpg",
                     gallery: [
                         "./images/OTHER/Corten Steel Panels/Corten Decorative Panels.jpg",
                         "./images/OTHER/Corten Steel Panels/CORTEN PANEL.jpg",
-                        "./images/OTHER/Corten Steel Panels/Corten Steel Panels.jpg",       
+                        "./images/OTHER/Corten Steel Panels/Corten Steel Panels.jpg",        
                     ],
                     features: [
                         "Material Composition: Copper, nickel, chromium, phosphorus, manganese with low carbon for strength and durability",
@@ -3240,6 +3301,7 @@ const productsDatabase = {
                 61: {
                     id: "product61",
                     name: "Stainless Steel T, U & C Profiles",
+                    slug: "stainless-steel-t-u-c-profiles",
                     shortDescription: "High-quality stainless steel profiles in T, U, and C shapes including Grade 304 with PVD titanium coating, gold and black mirror finishes, ideal for architectural, construction, and decorative applications.",
                     image: "./images/OTHER/Stainless Steel 304 T, C & U Profile/stainless steel t patti.jpg",
                     gallery: [
@@ -3286,6 +3348,7 @@ const productsDatabase = {
                 62: {
                     id: "product62",
                     name: "Stainless Steel PVD Coated Color Profiles",
+                    slug: "stainless-steel-pvd-coated-color-profiles",
                     shortDescription: "High-end stainless steel profiles coated using Physical Vapor Deposition (PVD) titanium ion plating to provide superior wear, scratch, and corrosion resistance, available in multiple colors and finishes for architectural and decorative applications.",
                     image: "./images/OTHER/Colour PVD Profile/Stainless Steel 316 Decorative Color C Profile.jpg",
                     gallery: [
@@ -3332,6 +3395,7 @@ const productsDatabase = {
                 63: {
                     id: "product63",
                     name: "Stainless Steel Omega Profiles",
+                    slug: "stainless-steel-omega-profiles",
                     shortDescription: "High-quality stainless steel omega profiles manufactured from SS 304, 316, and aluminum, available in various sizes, thicknesses, and decorative finishes including mirror, hairline, gold, and rose gold coatings, used in architectural and structural applications.",
                     image: "./images/OTHER/Omega Profiles/Profile Omega.jpg",
                     gallery: [
@@ -3378,6 +3442,7 @@ const productsDatabase = {
                 64: {
                     id: "product64",
                     name: "Corten Steel Planters",
+                    slug: "corten-steel-planters",
                     shortDescription: "Durable and weather-resistant Corten steel planters made from weathering steel alloys containing copper, nickel, chromium, phosphorus, and manganese, naturally forming a protective rust layer that ensures long life and low maintenance.",
                     image: "./images/OTHER/CORTEN PLANTERS/Corten Steel Square Planters.jpg",
                     gallery: [
@@ -3426,6 +3491,7 @@ const productsDatabase = {
                 65: {
                     id: "product65",
                     name: "Sheets, Plates & Coils",
+                    slug: "sheets-plates-coils",
                     shortDescription: "High-performance metal sheets, plates, and coils used in a range of industries, manufactured with ASTM- and IS-certified grades for superior durability, corrosion resistance, and versatility in shape and size.",
                     image: "./images/SP&C/sheet-plate-coil.png",
                     gallery: [
@@ -3477,6 +3543,7 @@ const productsDatabase = {
                 66: {
                     id: "product66",
                     name: "Rods, Bars & Wires",
+                    slug: "rods-bars-wires",
                     shortDescription: "High-performance rods, bars, and wires available in a range of nickel alloys, stainless steel, carbon steel, brass, bronze, and other high-grade materials for industrial and structural applications.",
                     image: "./images/RODS_BARS/Rods.jpg",
                     gallery: [
@@ -3523,6 +3590,7 @@ const productsDatabase = {
                 67: {
                     id: "product67",
                     name: "Copper Tubes",
+                    slug: "copper-tubes",
                     shortDescription: "High-quality copper materials including DHP, ETP, DPA, and OFHC grades designed for superior electrical and thermal conductivity in industrial and architectural applications.",
                     image: "./images/coper/copper-pipe.jpg",
                     gallery: [
@@ -3562,6 +3630,7 @@ const productsDatabase = {
                 68: {
                     id: "product68",
                     name: "Brass Tubes",
+                    slug: "brass-tubes",
                     shortDescription: "Durable and versatile brass products available in various compositions and mechanical strengths, ideal for decorative, electrical, and structural uses.",
                     image: "./images/Brass/Brass-tubes.jpg",
                     gallery: [
@@ -3597,6 +3666,7 @@ const productsDatabase = {
                 69: {
                     id: "product69",
                     name: "Cupronickel",
+                    slug: "cupronickel",
                     shortDescription: "High-strength Cupronickel alloys with superior resistance to seawater corrosion, ideal for marine, chemical, and condenser tube applications.",
                     image: "./images/Cupronickel/Cupronickel-Images.jpg",
                     gallery: [
@@ -3633,6 +3703,7 @@ const productsDatabase = {
                 70: {
                     id: "product70",
                     name: "Bronzes",
+                    slug: "bronzes",
                     shortDescription: "High-performance bronze alloys including phosphorous and aluminium bronze, offering superior strength, wear resistance, and corrosion protection.",
                     image: "./images/NonFerrous/bronze.jpg",
                     gallery: [
@@ -3667,6 +3738,7 @@ const productsDatabase = {
                 71: {
                     id: "product71",
                     name: "Copper Tubes & Sections",
+                    slug: "copper-tubes-sections",
                     shortDescription: "Copper tubes, rods, profiles, and wires precision-engineered for high conductivity, corrosion resistance, and pressure handling in critical systems.",
                     image: "./images/NonFerrous/copper_tube_section.jpg",
                     gallery: [
@@ -3703,19 +3775,23 @@ const productsDatabase = {
                     ]
                 },
 
-
             };
 // =========================================================================
 
 
 function ProductDetails() {
+  const params = useParams(); // Get the dynamic route parameter
+  
   const [product, setProduct] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 
-  // Helper to safely strip special characters for robust matching
-  const normalizeString = (str) => str.toLowerCase().replace(/[^a-z0-9]/g, '');
+  // Helper to safely strip special characters for basic normalization
+  const normalizeString = (str) => {
+    if (!str) return '';
+    return str.toLowerCase().replace(/[^a-z0-9]/g, '');
+  };
 
   // Helper to format image paths into clean labels for the gallery
   const formatImageName = (url) => {
@@ -3723,36 +3799,70 @@ function ProductDetails() {
       const parts = url.split('/');
       const filename = parts[parts.length - 1];
       const nameWithoutExt = filename.split('.')[0];
-      return nameWithoutExt.replace(/_/g, ' '); // Replace underscores with spaces
+      return nameWithoutExt.replace(/_/g, ' '); 
     } catch (e) {
       return "Product Image";
     }
   };
 
-  // Fetch product data from URL natively
+  // Fetch product data using robust MULTI-PASS matching
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      const nameParam = params.get('name');
+    const urlParam = params?.slug || params?.name;
 
-      if (nameParam) {
-        const normSearchName = normalizeString(nameParam);
-        
-        const match = Object.values(productsDatabase).find(dbItem => {
-            const normDbName = normalizeString(dbItem.name);
-            return normDbName.includes(normSearchName) || normSearchName.includes(normDbName);
-        });
+    if (urlParam) {
+      const decodedParam = decodeURIComponent(urlParam).toLowerCase();
+      const normSearch = normalizeString(decodedParam);
+      const searchTokens = decodedParam.split(/[^a-z0-9]+/).filter(Boolean);
+      
+      const allDbProducts = Object.values(productsDatabase);
+      let match = null;
 
-        if (match) {
-          setProduct(match);
-        }
+      // --- PASS 1: STRICT EXACT MATCH ---
+      // Checks the entire database for a 100% exact slug or name match first.
+      match = allDbProducts.find(dbItem => {
+          const dbSlug = (dbItem.slug || "").toLowerCase();
+          const dbName = (dbItem.name || "").toLowerCase();
+          return dbSlug === decodedParam || dbName === decodedParam;
+      });
+
+      // --- PASS 2: TOKENIZED MATCH ---
+      // If no exact match is found, check if all words from the URL exist in the DB item.
+      // This fixes the "RTJ" or "SORF" acronym mismatches.
+      if (!match) {
+          match = allDbProducts.find(dbItem => {
+              const dbSlugTokens = (dbItem.slug || "").toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
+              const dbNameTokens = (dbItem.name || "").toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
+
+              const matchesAllSlugTokens = searchTokens.length > 0 && searchTokens.every(token => dbSlugTokens.includes(token));
+              const matchesAllNameTokens = searchTokens.length > 0 && searchTokens.every(token => dbNameTokens.includes(token));
+
+              return matchesAllSlugTokens || matchesAllNameTokens;
+          });
+      }
+
+      // --- PASS 3: FUZZY FALLBACK ---
+      // If it still fails, fall back to basic contains/startsWith logic
+      if (!match) {
+          match = allDbProducts.find(dbItem => {
+              const normDbSlug = normalizeString(dbItem.slug);
+              const normDbName = normalizeString(dbItem.name);
+              
+              return (
+                (normDbSlug && (normDbSlug.includes(normSearch) || normSearch.includes(normDbSlug) || normDbSlug.startsWith(normSearch))) ||
+                (normDbName && (normDbName.includes(normSearch) || normSearch.includes(normDbName) || normDbName.startsWith(normSearch)))
+              );
+          });
+      }
+
+      if (match) {
+        setProduct(match);
       }
     }
     
     setIsLoading(false);
     const timer = setTimeout(() => setIsVisible(true), 50);
     return () => clearTimeout(timer);
-  }, []);
+  }, [params]);
 
   // Disable background scrolling when modal is open
   useEffect(() => {
@@ -3816,19 +3926,6 @@ function ProductDetails() {
 
       <div className="max-w-[1350px] mx-auto px-4 md:px-[5%]">
         
-        {/* Back Navigation */}
-        <div className="animate-fade-up" style={{ animationDelay: '0ms' }}>
-          <a 
-            href="/products"
-            className="inline-flex items-center gap-2 text-[#06367b] font-bold hover:text-[#2EC4FF] transition-colors duration-300 mb-10 group"
-          >
-            <div className="transform transition-transform duration-300 group-hover:-translate-x-1">
-               <ArrowLeft />
-            </div>
-            Back to Products
-          </a>
-        </div>
-        
         {/* --- TOP SECTION: Image + Core Info --- */}
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-start mb-16">
           
@@ -3837,7 +3934,7 @@ function ProductDetails() {
             <div className="relative w-full aspect-[4/3] sm:aspect-square rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.06)] border border-gray-100 group bg-gray-50">
                 <div className="absolute inset-0 bg-gradient-to-tr from-gray-100/50 to-white z-0"></div>
                 <img 
-                  src={product.image || "/placeholder.jpg"} 
+                  src={product.image?.replace(/^\.\//, '/') || "/placeholder.jpg"} 
                   alt={product.name} 
                   className="relative z-10 w-full h-full object-contain p-8 mix-blend-multiply transform group-hover:scale-105 transition-transform duration-[1000ms] ease-[cubic-bezier(0.25,1,0.5,1)]"
                 />
@@ -4022,7 +4119,7 @@ function ProductDetails() {
                   <div key={idx} className="flex flex-col items-center group">
                     <div className="w-full aspect-[4/3] mb-4 bg-white rounded-lg border border-gray-100 shadow-sm overflow-hidden flex items-center justify-center p-4 transition-transform duration-300 group-hover:-translate-y-1 group-hover:shadow-md">
                       <img 
-                        src={img} 
+                        src={img?.replace(/^\.\//, '/')} 
                         alt={`${product.name} variation ${idx + 1}`} 
                         className="max-w-full max-h-full object-contain mix-blend-multiply"
                       />
