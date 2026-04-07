@@ -1,5 +1,6 @@
 "use client"
 import React, { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 
 // --- Reusable Animated Fade-Up Wrapper ---
 const FadeUpSection = ({ children, delay = 0, isVisible }) => (
@@ -161,15 +162,15 @@ function ProductGallery() {
                   isVisible={isVisible} 
                   delay={(index % 3) * 150 + Math.floor(index / 3) * 100} 
                 >
-                  {/* Premium Simple Card Layout (Now an 'a' tag for direct navigation) */}
-                  <a 
-                    href={`/product/${product.id}`} // Dummy link to product page
+                  {/* Link dynamically passes the product.name as the category query parameter */}
+                  <Link 
+                    href={`/products?category=${encodeURIComponent(product.name)}`}
                     onTouchStart={() => handleTouchStart(index)}
                     onTouchEnd={handleTouchEndOrCancel}
                     onTouchMove={handleTouchEndOrCancel}
                     onTouchCancel={handleTouchEndOrCancel}
                     onClick={handleClick}
-                    onContextMenu={(e) => isLongPress && e.preventDefault()} // Prevents mobile menu popping up during long press
+                    onContextMenu={(e) => isLongPress && e.preventDefault()} 
                     className={`block group relative flex flex-col w-full bg-white rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 border border-gray-100 ${
                       isActive ? 'shadow-[0_16px_40px_rgba(6,54,123,0.15)] scale-[1.02]' : 'shadow-[0_4px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_40px_rgba(6,54,123,0.15)]'
                     }`}
@@ -249,7 +250,7 @@ function ProductGallery() {
                       </div>
                     </div>
 
-                  </a>
+                  </Link>
                 </FadeUpSection>
               );
             })}
@@ -259,8 +260,7 @@ function ProductGallery() {
           <FadeUpSection isVisible={isVisible} delay={400}>
             <div className="flex justify-center">
               
-              {/* UPDATED: Matches the View Pill Logic exactly */}
-              <a 
+              <Link 
                 href="/products" 
                 className="group relative inline-flex items-center justify-center px-8 py-4 rounded-full overflow-hidden transition-all duration-500 shadow-[0_4px_20px_rgba(6,54,123,0.15)] hover:shadow-[0_8px_30px_rgba(6,54,123,0.15)] hover:-translate-y-1 border border-transparent hover:border-gray-200"
               >
@@ -273,12 +273,12 @@ function ProductGallery() {
                 
                 {/* Button Text & Icon */}
                 <span className="relative z-10 flex items-center gap-3 text-sm md:text-base font-bold tracking-wide transition-colors duration-500 text-white group-hover:text-[#06367b]">
-                  View More Products
+                  View All Products
                   <div className="transform transition-transform duration-500 group-hover:translate-x-1">
                     <ArrowRight />
                   </div>
                 </span>
-              </a>
+              </Link>
               
             </div>
           </FadeUpSection>
