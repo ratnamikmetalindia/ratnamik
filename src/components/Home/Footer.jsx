@@ -1,5 +1,6 @@
 "use client"
 import React from 'react';
+import Link from 'next/link'; // Added Link import to prevent page reloads
 
 // --- Small Chevron Icon for Links ---
 const ChevronRight = () => (
@@ -31,20 +32,21 @@ function Footer() {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { name: "Home", href: "/" },
-    { name: "About Us", href: "/about" },
-    { name: "Product", href: "/products" },
-    { name: "Quality Policy", href: "/quality" },
-    { name: "Contact Us", href: "/contact" },
+    { name: "Home", href: "/#home" },
+    { name: "Company", href: "/#company" },
+    { name: "Products", href: "/products" },
+    { name: "Catalog", href: "/catalog" },
+    { name: "Certificate", href: "/certificate" },
+    { name: "Contact Us", href: "/#contact-us" },
   ];
 
   const products = [
-    { name: "Sheets, Plates, And Coils", href: "/products/sheets-plates" },
-    { name: "Rods Bars, And Blocks", href: "/products/rods-bars" },
-    { name: "Pipe, Tubes, And Hollow Bars", href: "/products/pipes-tubes" },
-    { name: "Titanium Tanks And Baskets", href: "/products/titanium" },
-    { name: "Angles And Channels", href: "/products/angles-channels" },
-    { name: "Rings, Circle, And Disc", href: "/products/rings-circle" },
+    { name: "Buttweld Fittings", href: "/products?category=Buttweld%20Fittings" },
+    { name: "Connectors", href: "/products?category=Connectors" },
+    { name: "Fasteners", href: "/products?category=Fasteners" },
+    { name: "Flanges", href: "/products?category=Flanges" },
+    { name: "Forged Fittings", href: "/products?category=Forged%20Fittings" },
+    { name: "Sheets, Plates & Coils", href: "/products?category=Sheets%2C%20Plates%20%26%20Coils" },
   ];
 
   return (
@@ -70,6 +72,7 @@ function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
             
             {/* Column 1: Logo & About */}
+            {/* Removed the centering wrapper here so it sits naturally to the left */}
             <div className="flex flex-col gap-6 lg:pr-6">
               {/* Premium Logo Box */}
               <div className="bg-white rounded-2xl py-4 px-6 shadow-[0_8px_30px_rgba(0,0,0,0.15)] w-fit mb-2 flex items-center justify-center transition-transform duration-300 hover:-translate-y-1">
@@ -79,7 +82,8 @@ function Footer() {
                     className="h-14 md:h-16 w-auto object-contain" 
                 />
               </div>
-              <p className="text-white/80 text-[15px] leading-[1.8]">
+              {/* text-justify keeps left and right edges straight/flush */}
+              <p className="text-white/80 text-[15px] leading-[1.8] text-justify">
                 Ratnamik Metal India is a leading supplier and stockist of Stainless Steel Pipe, 
                 Stainless Steel Tube, Sheet, Plate, Coil, Round Bar, Pipe, and Forged Fittings. 
                 Our vision is aiming for the best.
@@ -98,12 +102,13 @@ function Footer() {
               <ul className="flex flex-col gap-4 mt-2">
                 {quickLinks.map((link, index) => (
                   <li key={index}>
-                    <a href={link.href} className="group flex items-center gap-3 text-white/80 hover:text-[#2EC4FF] transition-colors duration-300 w-fit">
+                    {/* Changed <a> to <Link> */}
+                    <Link href={link.href} className="group flex items-center gap-3 text-white/80 hover:text-[#2EC4FF] transition-colors duration-300 w-fit">
                       <span className="text-white/60 group-hover:text-[#2EC4FF] transform transition-transform duration-300 group-hover:translate-x-1">
                         <ChevronRight />
                       </span>
                       <span className="text-[15px] font-medium">{link.name}</span>
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -121,12 +126,13 @@ function Footer() {
               <ul className="flex flex-col gap-4 mt-2">
                 {products.map((link, index) => (
                   <li key={index}>
-                    <a href={link.href} className="group flex items-center gap-3 text-white/80 hover:text-[#2EC4FF] transition-colors duration-300 w-fit">
+                    {/* Changed <a> to <Link> */}
+                    <Link href={link.href} className="group flex items-center gap-3 text-white/80 hover:text-[#2EC4FF] transition-colors duration-300 w-fit">
                       <span className="text-white/60 group-hover:text-[#2EC4FF] transform transition-transform duration-300 group-hover:translate-x-1">
                         <ChevronRight />
                       </span>
                       <span className="text-[15px] font-medium">{link.name}</span>
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -145,7 +151,7 @@ function Footer() {
                 
                 {/* Address */}
                 <div className="flex items-start gap-4 group">
-                  <div className="mt-1 shrink-0 text-[#2EC4FF] group-hover:text-white transition-colors duration-300">
+                  <div className="mt-1 shrink-0 text-white group-hover:text-[#2EC4FF] transition-colors duration-300">
                     <LocationIcon />
                   </div>
                   <div className="flex flex-col gap-1">
@@ -158,7 +164,7 @@ function Footer() {
 
                 {/* Phone */}
                 <div className="flex items-start gap-4 group">
-                  <div className="mt-1 shrink-0 text-[#2EC4FF] group-hover:text-white transition-colors duration-300">
+                  <div className="mt-1 shrink-0 text-white group-hover:text-[#2EC4FF] transition-colors duration-300">
                     <PhoneIcon />
                   </div>
                   <div className="flex flex-col gap-1">
@@ -171,7 +177,7 @@ function Footer() {
 
                 {/* Email */}
                 <div className="flex items-start gap-4 group">
-                  <div className="mt-1 shrink-0 text-[#2EC4FF] group-hover:text-white transition-colors duration-300">
+                  <div className="mt-1 shrink-0 text-white group-hover:text-[#2EC4FF] transition-colors duration-300">
                     <EnvelopeIcon />
                   </div>
                   <div className="flex flex-col gap-1">
@@ -190,7 +196,7 @@ function Footer() {
           {/* Bottom Copyright Bar */}
           <div className="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-center items-center gap-2 text-center text-sm text-white/70">
             <p>
-              Copyright © {currentYear} Ratnamik Metal India | built By Asha Next Technologies |
+              Copyright © {currentYear} Ratnamik Metal India | Build by Asha Next Technologies
             </p>
           </div>
 
