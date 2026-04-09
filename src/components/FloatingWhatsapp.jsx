@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 
 export default function FloatingWhatsApp() {
-  const phoneNumber = "919594430223";
+  const phoneNumber = "919833864009";
   const defaultMessage = "Hello Ratnamik Metal India, I would like to know more about your products.";
   const [userMessage, setUserMessage] = useState("");
   const [open, setOpen] = useState(false);
@@ -71,7 +71,7 @@ export default function FloatingWhatsApp() {
         </div>
 
         {/* Input Area */}
-        <div className="p-3 flex gap-2 items-center bg-[#f0f0f0] border-t">
+        <div className="p-3 flex gap-2 items-center bg-[#eae9e9] border-t">
           <input
             type="text"
             placeholder="Type a message"
