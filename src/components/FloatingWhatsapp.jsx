@@ -78,7 +78,7 @@ export default function FloatingWhatsApp() {
             placeholder="Type a message"
             value={userMessage}
             onChange={(e) => setUserMessage(e.target.value)}
-            className="flex-grow w-full min-w-0 px-4 py-2 rounded-full border bg-white outline-none text-[16px] md:text-sm placeholder:text-gray-500"
+            className="flex-grow text-black w-full min-w-0 px-4 py-2 rounded-full border bg-white outline-none text-[16px] md:text-sm placeholder:text-gray-500"
           />
           <a
             href={whatsappUrl + encodeURIComponent(userMessage || defaultMessage)}
