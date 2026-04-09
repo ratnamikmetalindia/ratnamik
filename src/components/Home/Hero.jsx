@@ -1,11 +1,12 @@
 "use client";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const direction = useRef(1); // 1 means moving forward (left to right), -1 means backward (right to left)
 
   const slides = [
     {
@@ -48,15 +49,33 @@ function Hero() {
     setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
   };
 
-  // Auto-play functionality
+  // Auto-play functionality with Ping-Pong effect (3 seconds)
   useEffect(() => {
     if (!isHovered) {
       const interval = setInterval(() => {
-        nextSlide();
-      }, 5000);
+        setCurrentSlide((prev) => {
+          // If we are moving forward
+          if (direction.current === 1) {
+            if (prev >= slides.length - 1) {
+              direction.current = -1; // Change direction to backward
+              return prev - 1;
+            }
+            return prev + 1;
+          } 
+          // If we are moving backward
+          else {
+            if (prev <= 0) {
+              direction.current = 1; // Change direction to forward
+              return prev + 1;
+            }
+            return prev - 1;
+          }
+        });
+      }, 3000); // 3 seconds interval
+      
       return () => clearInterval(interval);
     }
-  }, [isHovered, nextSlide]);
+  }, [isHovered, slides.length]);
 
   return (
     <div 
