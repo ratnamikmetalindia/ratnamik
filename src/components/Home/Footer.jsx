@@ -169,8 +169,8 @@ function Footer() {
                   </div>
                   <div className="flex flex-col gap-1">
                     <span className="text-xs font-semibold text-white/60 tracking-wider uppercase">Phone</span>
-                    <a href="tel:+9107313726882" className="text-[14px] text-white/90 hover:text-[#2EC4FF] transition-colors">
-                      07313726882
+                    <a href="tel:+919833864009" className="text-[14px] text-white/90 hover:text-[#2EC4FF] transition-colors">
+                      +91 9833864009
                     </a>
                   </div>
                 </div>
@@ -182,8 +182,8 @@ function Footer() {
                   </div>
                   <div className="flex flex-col gap-1">
                     <span className="text-xs font-semibold text-white/60 tracking-wider uppercase">Email</span>
-                    <a href="mailto:sales@jainamferroalloys.com" className="text-[14px] text-white/90 hover:text-[#2EC4FF] transition-colors break-all">
-                      ratnamikmetalindia.com
+                    <a href="mailto:info@ratnamikmetal.com" className="text-[14px] text-white/90 hover:text-[#2EC4FF] transition-colors break-all">
+                      info@ratnamikmetal.com
                     </a>
                   </div>
                 </div>

@@ -33,7 +33,7 @@ const ErrorXIcon = () => (
 const CustomToast = ({ show, message, type, onClose }) => {
   return (
     // FIXED: Full-width invisible wrapper that centers the toast on mobile and aligns right on desktop
-    <div className="fixed top-8 left-0 right-0 z-[9999] flex justify-center px-4 pointer-events-none md:left-auto md:right-8 md:px-0">
+    <div className="fixed top-8 left-0 right-0 z-[99999] flex justify-center px-4 pointer-events-none md:left-auto md:right-8 md:px-0">
       
       {/* Animated Toast Card */}
       {/* On mobile: drops down from the top. On desktop: slides in from the right */}
