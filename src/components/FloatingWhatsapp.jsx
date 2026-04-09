@@ -20,7 +20,8 @@ export default function FloatingWhatsApp() {
       {/* Popup UI */}
       <div
         className={`
-          absolute bottom-40 md:bottom-48 left-2 md:left-0 w-[280px] md:w-96 rounded-xl shadow-2xl
+          absolute bottom-40 md:bottom-48 left-2 md:left-0 
+          w-[280px] md:w-96 rounded-xl shadow-2xl
           transition-all duration-300 flex flex-col overflow-hidden
           ${open 
             ? "opacity-100 visible translate-y-0 pointer-events-auto" 
@@ -71,19 +72,19 @@ export default function FloatingWhatsApp() {
         </div>
 
         {/* Input Area */}
-        <div className="p-3 flex gap-2 items-center bg-[#eae9e9] border-t">
+        <div className="p-3 flex gap-2 items-center bg-[#f0f2f5] border-t">
           <input
             type="text"
             placeholder="Type a message"
             value={userMessage}
             onChange={(e) => setUserMessage(e.target.value)}
-            className="flex-grow px-4 py-2 rounded-full border bg-white outline-none text-sm"
+            className="flex-grow w-full min-w-0 px-4 py-2 rounded-full border bg-white outline-none text-[16px] md:text-sm placeholder:text-gray-500"
           />
           <a
             href={whatsappUrl + encodeURIComponent(userMessage || defaultMessage)}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-[#25D366] p-3 rounded-full flex items-center justify-center hover:scale-105 transition"
+            className="bg-[#00a884] p-3 rounded-full flex items-center justify-center hover:scale-105 transition shrink-0"
           >
             <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
               <path d="M2 21l21-9L2 3v7l15 2-15 2z" />

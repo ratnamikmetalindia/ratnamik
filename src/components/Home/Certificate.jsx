@@ -1,5 +1,6 @@
 "use client"
 import React, { useState } from 'react';
+import Image from 'next/image'; // Make sure this is imported!
 
 // --- Premium Icons ---
 const CheckCircleIcon = () => (
@@ -42,7 +43,7 @@ const ChevronRight = () => (
   </svg>
 );
 
-// --- Certificate Data (Reordered: ISO is now first) ---
+// --- Certificate Data Updated with Image Paths ---
 const certificatesData = [
   {
     id: 4,
@@ -60,8 +61,10 @@ const certificatesData = [
       "Internationally recognized quality management",
       "Maintained through continuous surveillance audits"
     ],
-    pdfPath: "/certificates/RATNAMIK METAL INDIA SOFT.pdf",
-    totalPages: 1
+    totalPages: 1,
+    images: [
+      "/certificates/RATNAMIK METAL INDIA SOFT_page-0001.jpg"
+    ]
   },
   {
     id: 1,
@@ -80,8 +83,13 @@ const certificatesData = [
       "Issued based on the deemed approval of application",
       "Valid for regular tax collection"
     ],
-    pdfPath: "/certificates/GSTCERTIFICATE.pdf",
-    totalPages: 3
+    totalPages: 3,
+    images: [
+      "/certificates/GSTCERTIFICATE_page-0001.jpg",
+      // Please make sure to export page 2 and 3 and add them to your folder!
+      "/certificates/GSTCERTIFICATE_page-0002.jpg", 
+      "/certificates/GSTCERTIFICATE_page-0003.jpg"
+    ]
   },
   {
     id: 2,
@@ -100,8 +108,10 @@ const certificatesData = [
       "Valid for international trade",
       "Authenticity can be verified online"
     ],
-    pdfPath: "/certificates/IEC.pdf",
-    totalPages: 1
+    totalPages: 1,
+    images: [
+      "/certificates/IEC_page-0001.jpg"
+    ]
   },
   {
     id: 3,
@@ -120,8 +130,12 @@ const certificatesData = [
       "Eligible for Government Schemes and benefits",
       "Official computer-generated statement"
     ],
-    pdfPath: "/certificates/MSME (2).pdf",
-    totalPages: 2
+    totalPages: 2,
+    images: [
+      "/certificates/MSME (2)_page-0001.jpg",
+      // Please make sure to export page 2 and add it to your folder!
+      "/certificates/MSME (2)_page-0002.jpg"
+    ]
   }
 ];
 
@@ -166,14 +180,6 @@ function Certificate() {
           .animate-fade-slide {
             animation: fadeSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
           }
-          /* Custom scrollbar to hide scrollbars natively if they appear */
-          .no-scrollbar::-webkit-scrollbar {
-            display: none;
-          }
-          .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-          }
         `
       }} />
 
@@ -191,25 +197,21 @@ function Certificate() {
                 className={`flex flex-col ${isImageLeft ? 'md:flex-row' : 'md:flex-row-reverse'} gap-10 md:gap-16 items-center`}
               >
                 
-                {/* --- Static PDF Preview Wrapper --- */}
+                {/* --- Static Image Preview Wrapper --- */}
                 <div className="w-full md:w-1/2 shrink-0">
-                  {/* Gray background padding like a frame */}
                   <div className="bg-gray-50 p-6 md:p-10 rounded-[2rem] flex items-center justify-center relative shadow-lg border border-gray-100">
                     
-                    {/* Strict A4 Aspect Ratio Container (1 : 1.414) to prevent scrollbars */}
+                    {/* Strict A4 Aspect Ratio Container using Next.js Image */}
                     <div className="relative w-full aspect-[1/1.414] bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
-                      <iframe 
-                        /* view=Fit ensures the PDF fits exactly within the box, preventing scrolling */
-                        src={`${cert.pdfPath}#page=1&toolbar=0&navpanes=0&scrollbar=0&statusbar=0&messages=0&view=Fit`} 
-                        className="absolute inset-0 w-[102%] h-[102%] -ml-[1%] -mt-[1%] border-0 pointer-events-none no-scrollbar" 
-                        title={cert.title}
-                        scrolling="no"
-                        frameBorder="0"
-                      ></iframe>
+                      <Image 
+                        src={cert.images[0]} // Always shows the first page as preview
+                        alt={`${cert.title} Preview`}
+                        fill
+                        className="object-contain" // Keeps the whole document visible without cropping
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
                     </div>
 
-                    {/* Invisible overlay blocks interactions, ensuring it remains static like an image */}
-                    <div className="absolute inset-0 z-10 bg-transparent rounded-[2rem]"></div>
                   </div>
                 </div>
 
@@ -242,7 +244,7 @@ function Certificate() {
                     ))}
                   </div>
 
-                  {/* View Certificate Button (Premium Blue Gradient) */}
+                  {/* View Certificate Button */}
                   <button 
                     onClick={() => openModal(cert)}
                     className="bg-gradient-to-r from-[#06367b] via-[#2EC4FF] to-[#075ca6] text-white font-bold px-8 py-4 rounded-full shadow-[0_8px_20px_-6px_rgba(46,196,255,0.5)] hover:scale-105 hover:shadow-[0_12px_25px_-6px_rgba(46,196,255,0.6)] transition-all duration-300 flex items-center justify-center gap-2.5 w-max tracking-wide"
@@ -258,12 +260,12 @@ function Certificate() {
       </div>
 
       {/* ========================================================================= */}
-      {/* -------------------- PREMIUM SLIDER PDF MODAL VIEWER -------------------- */}
+      {/* -------------------- PREMIUM SLIDER IMAGE MODAL VIEWER -------------------- */}
       {/* ========================================================================= */}
       {modalData && (
         <div 
           className="fixed inset-0 z-[999999] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 md:p-8"
-          onClick={closeModal} // Clicking background closes modal
+          onClick={closeModal} 
         >
           
           {/* Floating Close Button */}
@@ -303,22 +305,20 @@ function Certificate() {
             </button>
           )}
 
-          {/* Main Content: PDF Presentation Slider (Locked A4 Size) */}
+          {/* Main Content: Next.js Image Presentation Slider */}
           <div 
-            key={currentPage} // Forces re-render animation when page changes
+            key={currentPage} 
             className="relative w-full max-w-[800px] aspect-[1/1.414] max-h-[85vh] bg-white rounded-xl shadow-2xl animate-fade-slide flex items-center justify-center overflow-hidden"
-            onClick={(e) => e.stopPropagation()} // Prevent clicking the PDF from closing the modal
+            onClick={(e) => e.stopPropagation()} 
           >
-            {/* The invisible div blocks the native PDF hover controls, maintaining the clean image-like UI */}
-            <div className="absolute inset-0 z-10 pointer-events-none"></div>
-
-            <iframe 
-              src={`${modalData.pdfPath}#page=${currentPage}&toolbar=0&navpanes=0&scrollbar=0&statusbar=0&messages=0&view=Fit`} 
-              className="absolute inset-0 w-[102%] h-[102%] -ml-[1%] -mt-[1%] border-0 pointer-events-none no-scrollbar" 
-              title={`${modalData.title} Page ${currentPage}`}
-              scrolling="no"
-              frameBorder="0"
-            ></iframe>
+            <Image 
+              src={modalData.images[currentPage - 1]} 
+              alt={`${modalData.title} Page ${currentPage}`}
+              fill
+              className="object-contain"
+              sizes="100vw"
+              priority // Loads the modal image faster
+            />
           </div>
 
           {/* Page Indicator (Bottom Center) */}
