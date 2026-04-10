@@ -35,7 +35,6 @@ function Footer() {
     { name: "Home", href: "/#home" },
     { name: "Company", href: "/#company" },
     { name: "Products", href: "/products" },
-    { name: "Catalog", href: "/catalog" },
     { name: "Certificate", href: "/certificate" },
     { name: "Contact Us", href: "/#contact-us" },
   ];

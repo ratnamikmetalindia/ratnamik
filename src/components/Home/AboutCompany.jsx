@@ -2,23 +2,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 
-// Custom SVG for the 3x3 dots (White color to show perfectly over the real images)
-const CornerDots = ({ className }) => (
-  <svg className={className} width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="6" cy="6" r="2.5" stroke="#ffffff" strokeWidth="1.5"/>
-    <circle cx="18" cy="6" r="2.5" stroke="#ffffff" strokeWidth="1.5"/>
-    <circle cx="30" cy="6" r="2.5" stroke="#ffffff" strokeWidth="1.5"/>
-    
-    <circle cx="6" cy="18" r="2.5" stroke="#ffffff" strokeWidth="1.5"/>
-    <circle cx="18" cy="18" r="2.5" stroke="#ffffff" strokeWidth="1.5"/>
-    <circle cx="30" cy="18" r="2.5" stroke="#ffffff" strokeWidth="1.5"/>
-    
-    <circle cx="6" cy="30" r="2.5" stroke="#ffffff" strokeWidth="1.5"/>
-    <circle cx="18" cy="30" r="2.5" stroke="#ffffff" strokeWidth="1.5"/>
-    <circle cx="30" cy="30" r="2.5" stroke="#ffffff" strokeWidth="1.5"/>
-  </svg>
-);
-
 function AboutCompany() {
   const [isVisible, setIsVisible] = useState(false);
   const textRef = useRef(null);
@@ -66,22 +49,21 @@ function AboutCompany() {
         <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row items-start gap-12 lg:gap-20">
           
           {/* Left Side: Overlapping Images Layout */}
-          <div className="w-full lg:w-[45%] flex justify-center lg:justify-start">
+          <div className="w-full lg:w-[45%] flex justify-center lg:justify-start mt-4 md:mt-8">
             
             {/* Main Wrapper - Responsive height: short on phones (350px), tall on desktop (750px) */}
             <div className="relative w-full max-w-[550px] h-[350px] sm:h-[450px] md:h-[650px] lg:h-[750px]">
               
-              {/* --- BACK IMAGE (Top Left) --- */}
-              <div className="absolute top-0 left-0 w-[60%] h-[75%] border-[6px] md:border-[10px] border-[#fdfdfd] shadow-sm bg-[#fdfdfd] z-10">
+              {/* --- BACK IMAGE (Shifted Up and Left) --- */}
+              <div className="absolute -top-4 -left-4 md:-top-6 md:-left-6 w-[60%] h-[75%] border-[6px] md:border-[10px] border-[#fdfdfd] shadow-sm bg-[#fdfdfd] z-10">
                 <div className="relative w-full h-full overflow-hidden group">
                    <Image 
-                    src="/hero/slider1.jpg" 
+                    src="/aboutCompany/back.png" 
                     alt="Industrial Facility" 
                     fill 
-                    className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-110"
+                    className="object-cover scale-x-[-1]"
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
-                  <CornerDots className="absolute top-3 right-3 z-20 opacity-90" />
                 </div>
               </div>
 
@@ -89,13 +71,22 @@ function AboutCompany() {
               <div className="absolute bottom-0 right-0 w-[65%] h-[75%] border-[6px] md:border-[10px] border-[#fdfdfd] shadow-lg bg-[#fdfdfd] z-20">
                 <div className="relative w-full h-full overflow-hidden group">
                   <Image 
-                    src="/hero/slider2.jpg" 
-                    alt="Lobby Reception" 
+                    src="/aboutCompany/front.jpeg" 
+                    alt="Mr. Bharat Kumar H Prajapati" 
                     fill 
-                    className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-110"
+                    className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.25,1,0.5,1)] lg:group-hover:scale-110"
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
-                  <CornerDots className="absolute top-3 right-3 z-30 opacity-90" />
+                  
+                  {/* Name Overlay: Visible on mobile, hover-only on lg screens */}
+                  <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 z-30 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500">
+                    <h3 className="text-white font-bold text-[14px] sm:text-base md:text-lg leading-tight drop-shadow-md">
+                      Mr. Bharat Kumar H Prajapati
+                    </h3>
+                    <p className="text-gray-200 text-[12px] sm:text-sm mt-1 drop-shadow-md">
+                      CEO and Founder
+                    </p>
+                  </div>
                 </div>
               </div>
 
