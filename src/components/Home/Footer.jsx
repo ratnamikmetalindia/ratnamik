@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-import Link from 'next/link'; // Added Link import to prevent page reloads
+import Link from 'next/link';
 
 // --- Small Chevron Icon for Links ---
 const ChevronRight = () => (
@@ -71,7 +71,6 @@ function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
             
             {/* Column 1: Logo & About */}
-            {/* Removed the centering wrapper here so it sits naturally to the left */}
             <div className="flex flex-col gap-6 lg:pr-6">
               {/* Premium Logo Box */}
               <div className="bg-white rounded-2xl py-4 px-6 shadow-[0_8px_30px_rgba(0,0,0,0.15)] w-fit mb-2 flex items-center justify-center transition-transform duration-300 hover:-translate-y-1">
@@ -81,7 +80,6 @@ function Footer() {
                     className="h-14 md:h-16 w-auto object-contain" 
                 />
               </div>
-              {/* text-justify keeps left and right edges straight/flush */}
               <p className="text-white/80 text-[15px] leading-[1.8] text-justify">
                 Ratnamik Metal India is a leading supplier and stockist of Stainless Steel Pipe, 
                 Stainless Steel Tube, Sheet, Plate, Coil, Round Bar, Pipe, and Forged Fittings. 
@@ -101,7 +99,6 @@ function Footer() {
               <ul className="flex flex-col gap-4 mt-2">
                 {quickLinks.map((link, index) => (
                   <li key={index}>
-                    {/* Changed <a> to <Link> */}
                     <Link href={link.href} className="group flex items-center gap-3 text-white/80 hover:text-[#2EC4FF] transition-colors duration-300 w-fit">
                       <span className="text-white/60 group-hover:text-[#2EC4FF] transform transition-transform duration-300 group-hover:translate-x-1">
                         <ChevronRight />
@@ -125,7 +122,6 @@ function Footer() {
               <ul className="flex flex-col gap-4 mt-2">
                 {products.map((link, index) => (
                   <li key={index}>
-                    {/* Changed <a> to <Link> */}
                     <Link href={link.href} className="group flex items-center gap-3 text-white/80 hover:text-[#2EC4FF] transition-colors duration-300 w-fit">
                       <span className="text-white/60 group-hover:text-[#2EC4FF] transform transition-transform duration-300 group-hover:translate-x-1">
                         <ChevronRight />
@@ -190,6 +186,22 @@ function Footer() {
               </div>
             </div>
 
+          </div>
+
+          {/* New Map Section added here */}
+          <div className="mb-10 w-full group">
+            <div className="w-full h-[250px] md:h-[320px] rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.3)] border border-white/10 relative z-10 bg-white/5">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3586.681234764934!2d72.8239058749743!3d18.95858868222195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7ce160c2d2679%3A0xef31701371e6da67!2sRATNAMIK%20METAL!5e1!3m2!1sen!2sin!4v1775899459534!5m2!1sen!2sin" 
+                width="100%" 
+                height="100%" 
+                style={{ border: 0 }} 
+                allowFullScreen={true} 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
+              ></iframe>
+            </div>
           </div>
 
           {/* Bottom Copyright Bar */}
