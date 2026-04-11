@@ -257,7 +257,7 @@ function ProductGallery() {
           </div>
 
           {/* Centered Action Button */}
-          <FadeUpSection isVisible={isVisible} delay={400}>
+          <FadeUpSection isVisible={isVisible} delay={400}> 
             <div className="flex justify-center">
               
               <Link 
