@@ -261,17 +261,17 @@ function ContactUs() {
     {
       Icon: PhoneIcon,
       label: 'Phone',
-      content: ['+91 7313726882']
+      content: ['+91 9833864009']
     },
     {
       Icon: EnvelopeIcon,
       label: 'Email',
-      content: 'ratnamikmetalindia.com'
+      content: 'info@ratnamikmetal.com'
     },
     {
       Icon: ClockIcon,
       label: 'Working Hours',
-      content: 'Mon - Sat: 9:00 AM - 8:00 PM'
+      content: 'Mon - Sat: 9:00 AM - 6:00 PM'
     }
   ];
 
