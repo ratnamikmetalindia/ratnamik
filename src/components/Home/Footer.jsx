@@ -65,13 +65,13 @@ function Footer() {
       {/* Main Footer Container */}
       <footer className="relative bg-[#06367b] text-white pt-20 pb-8 w-full overflow-hidden font-sans">
         
-        <div className="max-w-[1400px] mx-auto px-4 md:px-[8%] relative z-10">
+        <div className="max-w-[1500px] mx-auto px-4 md:px-[5%] xl:px-[8%] relative z-10">
           
-          {/* Top Grid Section */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
+          {/* Top Grid Section - 5 columns on large screens */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8 mb-16">
             
             {/* Column 1: Logo & About */}
-            <div className="flex flex-col gap-6 lg:pr-6">
+            <div className="flex flex-col gap-6 lg:pr-4">
               {/* Premium Logo Box */}
               <div className="bg-white rounded-2xl py-4 px-6 shadow-[0_8px_30px_rgba(0,0,0,0.15)] w-fit mb-2 flex items-center justify-center transition-transform duration-300 hover:-translate-y-1">
                 <img 
@@ -186,22 +186,23 @@ function Footer() {
               </div>
             </div>
 
-          </div>
-
-          {/* New Map Section added here */}
-          <div className="mb-10 w-full group">
-            <div className="w-full h-[250px] md:h-[320px] rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.3)] border border-white/10 relative z-10 bg-white/5">
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3586.681234764934!2d72.8239058749743!3d18.95858868222195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7ce160c2d2679%3A0xef31701371e6da67!2sRATNAMIK%20METAL!5e1!3m2!1sen!2sin!4v1775899459534!5m2!1sen!2sin" 
-                width="100%" 
-                height="100%" 
-                style={{ border: 0 }} 
-                allowFullScreen={true} 
-                loading="lazy" 
-                referrerPolicy="no-referrer-when-downgrade"
-                className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
-              ></iframe>
+            {/* Column 5: Map Section (No heading, centered vertically to align with other content) */}
+            <div className="flex flex-col justify-start lg:mt-12 w-full h-full">
+              <div className="w-full h-[250px] lg:h-[280px] rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.3)] border border-white/10 relative z-10 bg-white/5">
+                {/* Embedded Map configured to point directly to Ratnamik Metal India */}
+                <iframe 
+                  src="https://maps.google.com/maps?q=Ratnamik+Metal+India,+Mumbai,+Maharashtra&t=&z=15&ie=UTF8&iwloc=B&output=embed" 
+                  width="100%" 
+                  height="100%" 
+                  style={{ border: 0 }} 
+                  allowFullScreen={true} 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity duration-500"
+                ></iframe>
+              </div>
             </div>
+
           </div>
 
           {/* Bottom Copyright Bar */}

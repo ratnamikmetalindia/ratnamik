@@ -1,115 +1,97 @@
 "use client";
-import React, { useState, useEffect, useCallback, useRef } from "react";
-import Image from "next/image";
+import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 
 function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-  const direction = useRef(1); // 1 means moving forward (left to right), -1 means backward (right to left)
 
-  const slides = [
+  const videos = [
     {
       id: 1,
-      image: "/hero/slider1.jpg",
+      src: "/heroVideo/video1.mp4",
       title: "Premium Metal Solutions",
       subtitle: "Delivering world-class alloys and steel products globally.",
+      durationMs: 4000, // Plays for 4 seconds
     },
     {
       id: 2,
-      image: "/hero/slider2.jpg",
+      src: "/heroVideo/video2.mp4",
       title: "Precision Engineering",
       subtitle: "ISO 9001:2015 certified manufacturing excellence.",
+      durationMs: 48000, // Advance slide at exactly 48 seconds
+      maxTime: 48,       // Force video to loop at 48 seconds if user is hovering
     },
     {
       id: 3,
-      image: "/hero/slider3.jpg",
+      src: "/heroVideo/video3.mp4",
       title: "High-Grade Materials",
       subtitle: "Uncompromising quality for your most demanding projects.",
-    },
-    {
-      id: 4,
-      image: "/hero/slider4.jpg",
-      title: "Reliable Global Export",
-      subtitle: "Connecting Indian metal manufacturing to the world.",
-    },
-    {
-      id: 5,
-      image: "/hero/slider5.jpg",
-      title: "Strength You Can Trust",
-      subtitle: "Delivering durable metal products with unmatched reliability.",
+      durationMs: 6000, // Plays for 6 seconds
     },
   ];
 
   const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-  }, [slides.length]);
+    setCurrentSlide((prev) => (prev === videos.length - 1 ? 0 : prev + 1));
+  }, [videos.length]);
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+    setCurrentSlide((prev) => (prev === 0 ? videos.length - 1 : prev - 1));
   };
 
-  // Auto-play functionality with Ping-Pong effect (3 seconds)
+  // Custom timer based on the specific duration of the current video
   useEffect(() => {
     if (!isHovered) {
-      const interval = setInterval(() => {
-        setCurrentSlide((prev) => {
-          // If we are moving forward
-          if (direction.current === 1) {
-            if (prev >= slides.length - 1) {
-              direction.current = -1; // Change direction to backward
-              return prev - 1;
-            }
-            return prev + 1;
-          } 
-          // If we are moving backward
-          else {
-            if (prev <= 0) {
-              direction.current = 1; // Change direction to forward
-              return prev + 1;
-            }
-            return prev - 1;
-          }
-        });
-      }, 3000); // 3 seconds interval
+      // Get the duration for the currently active video
+      const currentDuration = videos[currentSlide].durationMs;
       
-      return () => clearInterval(interval);
+      const timer = setTimeout(() => {
+        nextSlide();
+      }, currentDuration);
+
+      return () => clearTimeout(timer);
     }
-  }, [isHovered, slides.length]);
+  }, [currentSlide, isHovered, nextSlide, videos]);
 
   return (
-    <div 
+    <div
       id="home"
-      className="relative w-full min-h-[500px] overflow-hidden scroll-mt-[90px] bg-gray-100 group"
+      className="relative w-full min-h-[500px] overflow-hidden scroll-mt-[90px] bg-gray-900 group"
       style={{ height: "calc(100vh - 90px)" }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Sliding Track for Premium Horizontal Transition */}
-      <div
-        className="flex w-full h-full transition-transform duration-[1200ms] ease-[cubic-bezier(0.25,1,0.5,1)]"
-        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-      >
-        {slides.map((slide, index) => (
-          <div key={slide.id} className="min-w-full relative h-full">
-            {/* Background Image Container */}
+      {/* Container for videos - Absolute positioning for crossfade */}
+      <div className="relative w-full h-full">
+        {videos.map((vid, index) => (
+          <div
+            key={vid.id}
+            className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
+              index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
+            }`}
+          >
+            {/* Background Video */}
             <div className="relative w-full h-full overflow-hidden">
-              <Image
-                src={slide.image}
-                alt={slide.title}
-                fill
-                priority={index === 0}
-                className={`object-cover object-center transition-transform duration-[6000ms] ease-out ${
-                  index === currentSlide ? "scale-105" : "scale-100"
-                }`} // Adds a subtle, premium "Ken Burns" slow zoom effect to the active image
-                sizes="100vw"
+              <video
+                src={vid.src}
+                autoPlay
+                muted
+                loop
+                playsInline
+                // This checks the time continuously. If it hits the maxTime (48s), it loops back to 0.
+                onTimeUpdate={(e) => {
+                  if (vid.maxTime && e.target.currentTime >= vid.maxTime) {
+                    e.target.currentTime = 0;
+                  }
+                }}
+                className="object-cover object-center w-full h-full"
               />
 
-              {/* Refined Gradient Overlay - Only darkens the left side for text, keeping the rest of the image perfectly bright */}
-              <div className="absolute inset-y-0 left-0 w-full md:w-[50%] bg-gradient-to-r from-black/40 via-black/10 to-transparent pointer-events-none z-10"></div>
+              {/* Refined Gradient Overlay */}
+              <div className="absolute inset-y-0 left-0 w-full md:w-[50%] bg-gradient-to-r from-black/60 via-black/30 to-transparent pointer-events-none z-10"></div>
             </div>
 
-            {/* Text Content - Positioned over the gradient */}
+            {/* Text Content */}
             <div className="absolute inset-0 z-20 flex flex-col justify-center h-full px-8 md:px-[10%] max-w-7xl pointer-events-none">
               <div className="max-w-3xl">
                 <h1
@@ -119,7 +101,7 @@ function Hero() {
                       : "translate-y-12 opacity-0"
                   }`}
                 >
-                  {slide.title}
+                  {vid.title}
                 </h1>
                 <p
                   className={`text-lg md:text-2xl text-gray-100 mb-10 leading-relaxed transform transition-all duration-1000 ease-out ${
@@ -128,7 +110,7 @@ function Hero() {
                       : "translate-y-12 opacity-0"
                   }`}
                 >
-                  {slide.subtitle}
+                  {vid.subtitle}
                 </p>
 
                 {/* CTA Button */}
@@ -141,7 +123,7 @@ function Hero() {
                 >
                   <Link
                     href="/products"
-                    className="inline-flex items-center gap-3 px-8 py-4 bg-[#075ca6] text-white font-semibold text-lg hover:bg-white hover:text-[#06367b] transition-all duration-400 shadow-lg hover:shadow-xl pointer-events-auto"
+                    className="inline-flex items-center gap-3 px-8 py-4 bg-[#075ca6] text-white font-semibold text-lg hover:bg-white hover:text-[#06367b] transition-all duration-300 shadow-lg hover:shadow-xl pointer-events-auto"
                   >
                     Explore Products
                     <svg
