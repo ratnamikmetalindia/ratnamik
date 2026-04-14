@@ -31,8 +31,8 @@ const FadeUpSection = ({ children, delay = 0, isVisible, className = "" }) => (
 const FILTER_PILLS = [
   "All Products", "Flanges", "Buttweld Fittings", "Connectors", 
   "Forged Fittings", "Fasteners", "Refractory Anchors", "Forging Products", 
-  "Gaskets", "Designer Sheets", "Sheets, Plates & Coils", "Rods and Bars", 
-  "Non ferrous metals", "Other"
+  "Gaskets", "Sheets, Plates & Coils", "Rods and Bars", 
+  "Non ferrous metals"
 ];
 
 // --- Main Products Array (For Grid & Filters) ---
@@ -52,13 +52,13 @@ const ALL_PRODUCTS = [
   { id: 13, category: "Flanges", name: "AWWA_FLANGES", slug: "awwa-flanges", desc: "AWWA standard flanges designed for potable water systems.", image: "/products/flanges/Awwa Flanges.jpg" },
   { id: 14, category: "Flanges", name: "LONG_WELD", slug: "long-weld", desc: "Extended weld neck flanges for high-strength pipeline joints.", image: "/products/flanges/Alloy Steel Long Weld Neck Flanges.jpg" },
   { id: 15, category: "Flanges", name: "WELD NECK FLANGES", slug: "weld-neck-flanges", desc: "Durable weld neck flanges for secure, leak-proof connections.", image: "/products/flanges/Alloy Steel WNRF Flanges.webp" },
-  { id: 16, category: "Buttweld Fittings", name: "ANSI B16.9 Forged Concentric Reducer", slug: "ansi-b16-9-forged-concentric-reducer", desc: "Concentric reducers compliant with ASME and ASTM standards.", image: "/products/Buttweld Fittings/Forged Concentric Reducer.jpg" },
   { id: 17, category: "Buttweld Fittings", name: "ANSI B16.28 Swage Nipple", slug: "ansi-b16-28-swage-nipple", desc: "Swage nipples meeting multiple ANSI and JIS dimension standards.", image: "/products/Buttweld Fittings/SS Swage Nipple.webp" },
   { id: 18, category: "Buttweld Fittings", name: "ANSI B16.28 Stainless Steel Cross Tee", slug: "ansi-b16-28-stainless-steel-cross-tee", desc: "Cross tees available in multiple thickness schedules.", image: "/products/Buttweld Fittings/SS Cross Tee.jpg" },
-  { id: 19, category: "Buttweld Fittings", name: "ASTM A403 Stainless Steel Reducing Tee", slug: "astm-a403-stainless-steel-reducing-tee", desc: "Reducing tees compliant with ASTM and ANSI standards.", image: "/products/Buttweld Fittings/Reducing Tee.jpg" },
+  { id: 19, category: "Buttweld Fittings", name: "ASTM A403 Stainless Steel Reducing Tee", slug: "astm-a403-stainless-steel-reducing-tee", desc: "Reducing tees compliant with ASTM and ANSI standards.", image: "/products/Buttweld Fittings/ASME1.png" },
   { id: 20, category: "Buttweld Fittings", name: "ANSI B16.28 5D/6D Pipe Bend", slug: "ansi-b16-28-5d-6d-pipe-bend", desc: "Precision 5D/6D pipe bends for smooth flow and durability.", image: "/products/Buttweld Fittings/SS 6D Bend.jpg" },
-  { id: 21, category: "Buttweld Fittings", name: "ASME / ANSI B16.9 Barred Tee", slug: "asme-ansi-b16-9-barred-tee", desc: "Certified barred tees compliant with ASME and ANSI standards.", image: "/products/Buttweld Fittings/Buttweld Barred Tee.jpg" },
+  { id: 21, category: "Buttweld Fittings", name: "ASME / ANSI B16.9 Barred Tee", slug: "asme-ansi-b16-9-barred-tee", desc: "Certified barred tees compliant with ASME and ANSI standards.", image: "/products/Buttweld Fittings/ASME1.png" },
   { id: 22, category: "Buttweld Fittings", name: "Cross Reducers", slug: "cross-reducers", desc: "Reducers available in concentric and eccentric designs.", image: "/products/Buttweld Fittings/Duplex Steel Concentric Reducer.jpg" },
+  { id: 16, category: "Forged Fittings", name: "ANSI B16.9 Forged Concentric Reducer", slug: "ansi-b16-9-forged-concentric-reducer", desc: "Concentric reducers compliant with ASME and ASTM standards.", image: "/products/Buttweld Fittings/Forged Concentric Reducer.jpg" },
   { id: 23, category: "Forged Fittings", name: "ASTM A234 WP11 Pipe Reducing Tee", slug: "astm-a234-wp11-pipe-reducing-tee", desc: "Reducing tees forged to ASTM standards for pipe size changes.", image: "/products/Forged Fittings/Carbon Steel Reducing Tee.jpg" },
   { id: 24, category: "Forged Fittings", name: "Elbow Outlet Pipe Fittings", slug: "elbow-outlet-pipe-fittings", desc: "Elbow outlet fittings designed for tight directional changes.", image: "/products/Forged Fittings/Elbow Outlets.jpg" },
   { id: 25, category: "Forged Fittings", name: "Stainless Steel Threaded Outlets", slug: "stainless-steel-threaded-outlets", desc: "Threaded outlets built for reliable high-pressure systems.", image: "/products/Forged Fittings/Threaded Outlet.jpg" },
@@ -88,17 +88,11 @@ const ALL_PRODUCTS = [
   { id: 49, category: "Gaskets", name: "Alloy 20 and Stainless Steel Ring Type Joint Gaskets", slug: "alloy-20-and-stainless-steel-ring-type-joint-gaskets", desc: "Ring joint gaskets for leak-proof high-pressure connections.", image: "/products/Gaskets/RING JOINT TYPE GASKETS.jpg" },
   { id: 50, category: "Gaskets", name: "Spiral Wound Gaskets", slug: "spiral-wound-gaskets", desc: "Spiral wound gaskets for high-pressure flange sealing.", image: "/products/Gaskets/Spiral Wound Gaskets_.jpg" },
   { id: 51, category: "Gaskets", name: "Stainless Steel Insulation Gasket Kits", slug: "stainless-steel-insulation-gasket-kits", desc: "Insulation gasket kits for reliable sealing and insulation.", image: "/products/Gaskets/Monel Insulation Gasket.jpg" },
-  { id: 52, category: "Designer Sheets", name: "Stainless Steel Designer Sheets", slug: "stainless-steel-designer-sheets", desc: "Designer stainless steel sheets for aesthetic applications.", image: "/products/Designer Sheets/SS Designer Sheets.png" },
-  { id: 53, category: "Sheets, Plates & Coils", name: "Sheets, Plates & Coils", slug: "sheets-plates-coils", desc: "High-quality sheets, plates, and coils known for superior strength, corrosion resistance, and smooth finish — ideal for industrial and construction applications.", image: "/products/Sheets, Plates & Coils/sheet-plate-coil.png" },
-  { id: 54, category: "Rods and Bars", name: "Rods, Bars & Wires", slug: "rods-bars-wires", desc: "Precision-engineered rods and bars offering excellent strength, durability, and corrosion resistance for construction and manufacturing applications.", image: "/products/Rods and Bars/Rods.jpg" },
-  { id: 55, category: "Non ferrous metals", name: "Copper Tubes", slug: "copper-tubes", desc: "High-conductivity copper products known for excellent electrical and thermal performance, ideal for wiring, heat exchangers, and industrial use.", image: "/products/Non ferrous metals/copper-pipe.jpg" },
-  { id: 56, category: "Non ferrous metals", name: "Brass Tubes", slug: "brass-tubes", desc: "Durable and corrosion-resistant brass materials suitable for fittings, valves, and decorative components in marine and industrial environments.", image: "/products/Non ferrous metals/Brass-tubes.jpg" },
-  { id: 57, category: "Non ferrous metals", name: "Cupronickel", slug: "cupronickel", desc: "Cupronickel alloys offering superior resistance to seawater corrosion, widely used in shipbuilding, condensers, and desalination plants.", image: "/products/Non ferrous metals/Cupronickel-Images.jpg" },
-  { id: 58, category: "Other", name: "Corten Steel Planters", slug: "corten-steel-planters", desc: "Durable corten steel planters for outdoor landscaping", image: "/products/Other/Corten Steel Square Planters.jpg" },
-  { id: 59, category: "Other", name: "Stainless Steel Omega Profiles", slug: "stainless-steel-omega-profiles", desc: "Omega shaped stainless steel profiles for architectural designs", image: "/products/Other/Profile Omega.jpg" },
-  { id: 60, category: "Other", name: "Stainless Steel PVD Coated Color Profiles", slug: "stainless-steel-pvd-coated-color-profiles", desc: "OPVD coated stainless steel color profiles for decorative use", image: "/products/Other/Stainless Steel 316 Decorative Color C Profile.jpg" },
-  { id: 61, category: "Other", name: "Stainless Steel T, U & C Profiles", slug: "stainless-steel-t-u-c-profiles", desc: "T, U, and C stainless steel profiles for versatile uses", image: "/products/Other/stainless steel t patti.jpg" },
-  { id: 62, category: "Other", name: "Corten Steel Panels", slug: "corten-steel-panels", desc: "Durable weathering steel panels with protective finish", image: "/products/Other/CORTEN PANEL.jpg" },
+  { id: 52, category: "Sheets, Plates & Coils", name: "Sheets, Plates & Coils", slug: "sheets-plates-coils", desc: "High-quality sheets, plates, and coils known for superior strength, corrosion resistance, and smooth finish — ideal for industrial and construction applications.", image: "/products/Sheets, Plates & Coils/sheet-plate-coil.png" },
+  { id: 53, category: "Rods and Bars", name: "Rods, Bars & Wires", slug: "rods-bars-wires", desc: "Precision-engineered rods and bars offering excellent strength, durability, and corrosion resistance for construction and manufacturing applications.", image: "/products/Rods and Bars/Rods.jpg" },
+  { id: 54, category: "Non ferrous metals", name: "Copper Tubes", slug: "copper-tubes", desc: "High-conductivity copper products known for excellent electrical and thermal performance, ideal for wiring, heat exchangers, and industrial use.", image: "/products/Non ferrous metals/copper-pipe.jpg" },
+  { id: 55, category: "Non ferrous metals", name: "Brass Tubes", slug: "brass-tubes", desc: "Durable and corrosion-resistant brass materials suitable for fittings, valves, and decorative components in marine and industrial environments.", image: "/products/Non ferrous metals/Brass-tubes.jpg" },
+  { id: 56, category: "Non ferrous metals", name: "Cupronickel", slug: "cupronickel", desc: "Cupronickel alloys offering superior resistance to seawater corrosion, widely used in shipbuilding, condensers, and desalination plants.", image: "/products/Non ferrous metals/Cupronickel-Images.jpg" },
 ];
 
 function Products() {
