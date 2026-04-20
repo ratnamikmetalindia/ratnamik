@@ -120,7 +120,7 @@ function ProductAndServices() {
     },
     {
       title: "Quality Assurance",
-      description: "ISO 9001:2012 certified processes ensuring consistent quality and reliability. Comprehensive testing and quality control measures.",
+      description: "ISO 9001:2015 certified processes ensuring consistent quality and reliability. Comprehensive testing and quality control measures.",
       Icon: IconQuality,
     }
   ];
