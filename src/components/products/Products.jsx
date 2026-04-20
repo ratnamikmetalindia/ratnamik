@@ -42,10 +42,10 @@ const ALL_PRODUCTS = [
   { id: 3, category: "Connectors", name: "Corten Steel Panels", slug: "corten-steel-panels", desc: "Weathering steel panels with protective patina finish.", image: "/products/connectors/CS Check Valves.jpg" },
   { id: 4, category: "Connectors", name: "Forged Stainless Steel Tube Union Elbow", slug: "forged-stainless-steel-tube-union-elbow", desc: "Forged union elbows in multiple stainless alloys and metals.", image: "/products/connectors/SS Union Elbow.jpg" },
   { id: 5, category: "Flanges", name: "Nipo Flange", slug: "nipo-flanges", desc: "Specialized nipo flanges for branch pipe connections.", image: "/products/flanges/Steel Nipoflange.jpg" },
-  { id: 6, category: "Flanges", name: "SLIP ON FLANGES", slug: "slip-on-flanges", desc: "High-quality slip-on flanges for various industrial applications.", image: "/products/flanges/Alloy-Steel-Slip-On-Flanges.webp" },
+  { id: 6, category: "Flanges", name: "SLIP ON FLANGES", slug: "slip-on-flanges", desc: "High-quality slip-on flanges for various industrial applications.", image: "/images/flangs/SLIP ON FLANGES/SS_SLIP_ON_FLANGES.jpeg" },
   { id: 7, category: "Flanges", name: "RING TYPE JOINT FLANGES", slug: "ring-type-joint-flanges", desc: "RTJ flanges engineered for high-pressure, leak-proof sealing.", image: "/products/flanges/ring-type-joint-flanges.jpg" },
   { id: 8, category: "Flanges", name: "SPECTACLE BLIND FLANGES", slug: "spectacle-blind-flanges", desc: "Spectacle blind flanges for flow control and isolation.", image: "/products/flanges/Spectacle Blind Flanges_.jpg" },
-  { id: 9, category: "Flanges", name: "DIN FLANGES", slug: "din-flanges", desc: "DIN standard flanges for European piping applications.", image: "/products/flanges/DIN PN6 PN40 Flanges.jpg" },
+  { id: 9, category: "Flanges", name: "DIN FLANGES", slug: "din-flanges", desc: "DIN standard flanges for European piping applications.", image: "/images/flangs/DIN FLANGES/DIN PN-10 SS Slip On Flanges.jpg" },
   { id: 10, category: "Flanges", name: "THREADED FLANGES", slug: "threaded-flanges", desc: "Threaded flanges for easy and secure pipe threading.", image: "/products/flanges/Stainless Threaded Flanges.jpg" },
   { id: 11, category: "Flanges", name: "BLIND FLANGES", slug: "blind-flanges", desc: "Blind flanges for sealing and capping pipeline ends.", image: "/products/flanges/BLIND FLANGES.jpg" },
   { id: 12, category: "Flanges", name: "Body Flanges", slug: "body-flanges", desc: "Specialized body flanges for industrial piping applications.", image: "/products/flanges/Body Flanges.jpg" },
@@ -54,8 +54,8 @@ const ALL_PRODUCTS = [
   { id: 15, category: "Flanges", name: "WELD NECK FLANGES", slug: "weld-neck-flanges", desc: "Durable weld neck flanges for secure, leak-proof connections.", image: "/products/flanges/Alloy Steel WNRF Flanges.webp" },
   { id: 17, category: "Buttweld Fittings", name: "ANSI B16.28 Swage Nipple", slug: "ansi-b16-28-swage-nipple", desc: "Swage nipples meeting multiple ANSI and JIS dimension standards.", image: "/products/Buttweld Fittings/SS Swage Nipple.webp" },
   { id: 19, category: "Buttweld Fittings", name: "ASTM A403 Stainless Steel Reducing Tee", slug: "astm-a403-stainless-steel-reducing-tee", desc: "Reducing tees compliant with ASTM and ANSI standards.", image: "/products/Buttweld Fittings/ASME1.png" },
-  { id: 20, category: "Buttweld Fittings", name: "ANSI B16.28 5D/6D Pipe Bend", slug: "ansi-b16-28-5d-6d-pipe-bend", desc: "Precision 5D/6D pipe bends for smooth flow and durability.", image: "/products/Buttweld Fittings/SS 6D Bend.jpg" },
-  { id: 21, category: "Buttweld Fittings", name: "ASME / ANSI B16.9 Barred Tee", slug: "asme-ansi-b16-9-barred-tee", desc: "Certified barred tees compliant with ASME and ANSI standards.", image: "/products/Buttweld Fittings/ASME1.png" },
+  { id: 20, category: "Buttweld Fittings", name: "ANSI B16.28 5D/6D Pipe Bend", slug: "ansi-b16-28-5d-6d-pipe-bend", desc: "Precision 5D/6D pipe bends for smooth flow and durability.", image: "/products/Buttweld Fittings/ANSI B16.28.png" },
+  { id: 21, category: "Buttweld Fittings", name: "ASME / ANSI B16.9 Barred Tee", slug: "asme-ansi-b16-9-barred-tee", desc: "Certified barred tees compliant with ASME and ANSI standards.", image: "/products/Buttweld Fittings/ASME2.png" },
   { id: 22, category: "Buttweld Fittings", name: "Cross Reducers", slug: "cross-reducers", desc: "Reducers available in concentric and eccentric designs.", image: "/products/Buttweld Fittings/Duplex Steel Concentric Reducer.jpg" },
   { id: 18, category: "Forged Fittings", name: "ANSI B16.28 Stainless Steel Cross Tee", slug: "ansi-b16-28-stainless-steel-cross-tee", desc: "Cross tees available in multiple thickness schedules.", image: "/products/Buttweld Fittings/SS Cross Tee.jpg" },
   { id: 16, category: "Forged Fittings", name: "ANSI B16.9 Forged Concentric Reducer", slug: "ansi-b16-9-forged-concentric-reducer", desc: "Concentric reducers compliant with ASME and ASTM standards.", image: "/products/Buttweld Fittings/Forged Concentric Reducer.jpg" },
@@ -206,16 +206,21 @@ function Products() {
                   isVisible={isVisible} 
                   delay={(index % 3) * 150 + Math.floor(index / 3) * 100} 
                 >
-                  {/* UPDATED TO USE SLUG FOR DYNAMIC ROUTE */}
                   <Link 
                     href={`/product/${product.slug}`}
                     className="block group relative flex flex-col h-full w-full bg-white rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 border border-gray-100 shadow-[0_8px_30px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_-10px_rgba(46,196,255,0.4)] hover:-translate-y-1"
                   >
-                    <div className="relative w-full aspect-[16/10] overflow-hidden bg-gray-50">
+                    
+                    {/* --- UPDATED IMAGE SECTION --- */}
+                    <div className={`relative w-full aspect-[16/10] overflow-hidden ${
+                      product.id === 6 || product.id === 20 ? 'bg-white' : 'bg-gray-50'
+                    }`}>
                       <img 
                         src={product.image} 
                         alt={product.name} 
-                        className="absolute inset-0 w-full h-full object-cover transform transition-transform duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105"
+                        className={`absolute inset-0 w-full h-full transform transition-transform duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105 ${
+                          product.id === 6 || product.id === 20 ? 'object-contain p-4' : 'object-cover'
+                        }`}
                       />
                     </div>
 

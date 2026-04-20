@@ -923,10 +923,10 @@ const productsDatabase = {
                     name: "ASME / ANSI B16.9 Barred Tee",
                     slug: "asme-ansi-b16-9-barred-tee",
                     shortDescription: "High-quality barred tees manufactured with precision for industrial and racing hose applications. Available in multiple materials including stainless steel, Hastelloy, Inconel, and nickel alloys.",
-                    image: "./products/Buttweld Fittings/ASME1.png",
+                    image: "./products/Buttweld Fittings/ASME2.png",
                     gallery: [
-                        "./products/Buttweld Fittings/ASME2.png",
                         "./products/Buttweld Fittings/ASME1.png",
+                        "./products/Buttweld Fittings/ASME2.png",
                         "./products/Buttweld Fittings/ASME3.webp",
                     ],
                     features: [
@@ -977,7 +977,7 @@ const productsDatabase = {
                     name: "ANSI B16.28 5D/6D Pipe Bend",
                     slug: "ansi-b16-28-5d-6d-pipe-bend",
                     shortDescription: "High precision 5D and 6D pipe bends manufactured with induction bending technology offering smooth flow, corrosion resistance, and durability for industrial and petrochemical applications.",
-                    image:  "./images/Buttweld Fittings/BEND/SS 6D Bend.jpg",
+                    image:  "./products/Buttweld Fittings/ANSI B16.28.png",
                     gallery: [
                         "./images/Buttweld Fittings/BEND/Seamless 5D Bend.jpg",
                         "./images/Buttweld Fittings/BEND/SS 6D Bend.jpg",
