@@ -5065,6 +5065,301 @@ const productsDatabase = {
       "Fertilizer plants and general engineering",
     ],
   },
+  73: {
+  id: "product73",
+  name: "Seamless Pipes",
+  slug: "seamless-pipes",
+  shortDescription:
+    "Seamless pipes manufactured without welding, offering high strength, corrosion resistance, and reliable performance in high-pressure and high-temperature applications.",
+  image: "./products/Pipes/seamless-pipes.jpg",
+  gallery: [
+    "./products/Pipes/seamless1.png",
+    "./products/Pipes/seamless2.jpg",
+  ],
+  features: [
+    "Manufactured without welding seams for uniform structure",
+    "Size range from 1/8” NB to 36” NB (OD: 6 mm to 914 mm)",
+    "Wall thickness from 1 mm to 40 mm",
+    "Available in schedules Sch 5, 10, 40, 80, 160, XXS",
+    "Smooth internal and external finish for better fluid flow",
+    "High resistance to pressure, corrosion, and mechanical stress",
+    "Available in multiple forms including circular, square, rectangular, and hexagonal",
+    "Coating options include 3LPE, FBE, varnished, and galvanized",
+  ],
+  specs: [
+    {
+      parameter: "Size Range",
+      specification: "1/8” NB – 36” NB",
+    },
+    {
+      parameter: "Outer Diameter",
+      specification: "6 mm – 914 mm",
+    },
+    {
+      parameter: "Wall Thickness",
+      specification: "1 mm – 40 mm",
+    },
+    {
+      parameter: "Standards",
+      specification:
+        "ASTM A106/A53, ASME SA106/SA53, API 5L, DIN, EN, ISO, JIS",
+    },
+    {
+      parameter: "Ends",
+      specification: "Plain (PE), Beveled (BE), Threaded (NPT/BSPT)",
+    },
+  ],
+  productFeatures: [
+    "High strength suitable for high-pressure applications",
+    "Excellent corrosion resistance for long service life",
+    "High dimensional accuracy ensures perfect fit",
+    "Smooth surface finish reduces maintenance",
+    "Manufactured as per international standards",
+  ],
+  applications: [
+    "Oil & Gas and petrochemical industries",
+    "Power plants and boiler equipment",
+    "Heat exchangers and pressure vessels",
+    "Automotive and mechanical engineering",
+    "Construction and structural applications",
+  ],
+},
+74: {
+  id: "product74",
+  name: "Welded Pipes",
+  slug: "welded-pipes",
+  shortDescription:
+    "Welded pipes manufactured by rolling and welding steel plates, offering high strength, durability, and cost-effective performance for fluid transport and structural applications.",
+  image: "./products/Pipes/welded-pipes.png",
+  gallery: [
+    "./products/Pipes/welded-pipes1.jpg",
+    "./products/Pipes/welded-pipes.jpg",
+    "./products/Pipes/welded-pipes2.png",
+  ],
+  features: [
+    "Manufactured by rolling steel plates and welding longitudinally or spirally",
+    "Available in ERW, LSAW, and SSAW types",
+    "Size range from 1/2” NB to 120” NB (OD: 21.3 mm to 3048 mm)",
+    "Wall thickness from 1.5 mm to 50 mm",
+    "Uniform wall thickness with high dimensional accuracy",
+    "High strength with resistance to pressure and corrosion",
+    "Available in circular, square, and rectangular forms",
+    "Coating options include 3LPE, FBE, varnished, galvanized, and painted",
+  ],
+  specs: [
+    {
+      parameter: "Size Range",
+      specification: "1/2” NB – 120” NB",
+    },
+    {
+      parameter: "Outer Diameter",
+      specification: "21.3 mm – 3048 mm",
+    },
+    {
+      parameter: "Wall Thickness",
+      specification: "1.5 mm – 50 mm",
+    },
+    {
+      parameter: "Standards",
+      specification:
+        "ASTM, ASME, API, DIN, EN, ISO, JIS",
+    },
+    {
+      parameter: "Ends",
+      specification: "Plain (PE), Beveled (BE), Threaded",
+    },
+  ],
+  productFeatures: [
+    "High mechanical strength for industrial and structural applications",
+    "Excellent corrosion resistance for longer service life",
+    "Accurate dimensions with reliable weld integrity",
+    "Cost-effective solution compared to seamless pipes",
+    "Manufactured as per international quality standards",
+  ],
+  applications: [
+    "Oil & Gas and petrochemical industries",
+    "Water transmission and pipeline systems",
+    "Power plants and structural applications",
+    "Construction and mechanical engineering",
+    "Automotive and industrial systems",
+  ],
+},
+75: {
+  id: "product75",
+  name: "ERW Pipes",
+  slug: "erw-pipes",
+  shortDescription:
+    "Electric Resistance Welded pipes manufactured with high precision, offering uniform thickness, smooth finish, and cost-effective performance for structural and pipeline applications.",
+  image: "./products/Pipes/erw-pipes.png",
+  gallery: [
+    "./products/Pipes/erw1.png",
+    "./products/Pipes/erw2.png",
+  ],
+  features: [
+    "Manufactured by cold-forming steel strips and welding using electric resistance",
+    "Size range from 1/2” NB to 24” NB (OD: 21.3 mm to 609 mm)",
+    "Wall thickness from 1.5 mm to 20 mm",
+    "Available in schedules Sch 5, 10, 20, 40, 80",
+    "Uniform thickness with high dimensional accuracy",
+    "Smooth surface finish for efficient flow",
+    "Available in circular, square, and rectangular forms",
+    "Coating options include 3LPE, FBE, galvanized, painted, and varnished",
+  ],
+  specs: [
+    {
+      parameter: "Size Range",
+      specification: "1/2” NB – 24” NB",
+    },
+    {
+      parameter: "Outer Diameter",
+      specification: "21.3 mm – 609 mm",
+    },
+    {
+      parameter: "Wall Thickness",
+      specification: "1.5 mm – 20 mm",
+    },
+    {
+      parameter: "Standards",
+      specification: "ASTM, IS, API, EN, DIN",
+    },
+    {
+      parameter: "Ends",
+      specification: "Plain (PE), Beveled (BE), Threaded",
+    },
+  ],
+  productFeatures: [
+    "High weld integrity ensures strong and durable joints",
+    "Corrosion resistance with multiple coating and material options",
+    "Precise dimensions for easy installation",
+    "Cost-effective alternative to seamless pipes",
+    "Manufactured as per international quality standards",
+  ],
+  applications: [
+    "Water and gas pipelines",
+    "Oil & Gas and petrochemical industries",
+    "Construction and structural applications",
+    "Fencing and scaffolding",
+    "Mechanical and engineering uses",
+  ],
+},
+76: {
+  id: "product76",
+  name: "Electro Polished Pipes",
+  slug: "electro-polished-pipes",
+  shortDescription:
+    "Premium stainless steel pipes with electro-polished mirror finish, offering ultra-smooth surface, high corrosion resistance, and hygienic performance for critical applications.",
+  image: "./products/Pipes/electro-polished-pipes.png",
+  gallery: [
+    "./products/Pipes/electro1.png",
+    "./products/Pipes/electro2.png",
+    "./products/Pipes/electro3.png",
+  ],
+  features: [
+    "Electro-polished for ultra-smooth mirror finish (ID & OD)",
+    "Size range from 1/4” OD to 12” OD (6 mm to 300 mm)",
+    "Wall thickness from 0.5 mm to 6 mm",
+    "Surface roughness as low as 0.25 µm",
+    "Available in stainless steel grades 304, 304L, 316, 316L",
+    "High corrosion resistance and contamination-free surface",
+    "Suitable for hygienic and high-purity applications",
+    "Available in round, square, rectangular, and custom forms",
+  ],
+  specs: [
+    {
+      parameter: "Size Range",
+      specification: "1/4” OD – 12” OD",
+    },
+    {
+      parameter: "Outer Diameter",
+      specification: "6 mm – 300 mm",
+    },
+    {
+      parameter: "Wall Thickness",
+      specification: "0.5 mm – 6 mm",
+    },
+    {
+      parameter: "Standards",
+      specification: "ASTM A270, ASTM A312, ASME SA270, DIN, ISO",
+    },
+    {
+      parameter: "Ends",
+      specification: "Plain (PE), Beveled (BE), Flanged",
+    },
+  ],
+  productFeatures: [
+    "Ultra-smooth surface ensures contamination-free flow",
+    "Excellent corrosion resistance for long service life",
+    "High dimensional accuracy and precision finish",
+    "Ideal for hygienic and sterile applications",
+    "Manufactured as per international standards",
+  ],
+  applications: [
+    "Pharmaceutical and biotechnology industries",
+    "Food & beverage and dairy processing",
+    "Semiconductor manufacturing",
+    "Chemical processing industries",
+    "High-purity gas and liquid systems",
+  ],
+},
+77: {
+  id: "product77",
+  name: "EFW Pipes",
+  slug: "efw-pipes",
+  shortDescription:
+    "Electric Fusion Welded pipes designed for large-diameter applications, offering high strength, durability, and reliable performance in demanding industrial environments.",
+  image: "./products/Pipes/efw-pipes.png",
+  gallery: [
+    "./products/Pipes/efw1.png",
+    "./products/Pipes/efw2.png",
+    "./products/Pipes/efw3.png",
+  ],
+  features: [
+    "Manufactured by electric fusion welding of plates or coils",
+    "Suitable for large-diameter applications from 8” NB to 72” NB",
+    "Outer diameter range from 219 mm to 1829 mm",
+    "Wall thickness from 3 mm to 50 mm",
+    "Available in schedules Sch 5, 10, 40, 80, 160, XXS",
+    "High strength weld with smooth internal finish",
+    "Excellent resistance to pressure, corrosion, and high temperature",
+    "Tested with hydrostatic, ultrasonic, and radiographic methods",
+  ],
+  specs: [
+    {
+      parameter: "Size Range",
+      specification: "8” NB – 72” NB",
+    },
+    {
+      parameter: "Outer Diameter",
+      specification: "219 mm – 1829 mm",
+    },
+    {
+      parameter: "Wall Thickness",
+      specification: "3 mm – 50 mm",
+    },
+    {
+      parameter: "Standards",
+      specification: "ASTM A358, ASTM A312, ASME SA358/SA312, DIN, EN",
+    },
+    {
+      parameter: "Ends",
+      specification: "Plain (PE), Beveled (BE)",
+    },
+  ],
+  productFeatures: [
+    "High-strength weld ensures leak-proof and durable performance",
+    "Suitable for large-diameter and high-pressure applications",
+    "Excellent corrosion resistance in harsh environments",
+    "Precise dimensions for consistent pipeline performance",
+    "Manufactured as per international standards",
+  ],
+  applications: [
+    "Oil & Gas and petrochemical industries",
+    "Power generation and desalination plants",
+    "Water transmission and pipeline systems",
+    "Structural and engineering applications",
+    "Industrial fluid and gas transport systems",
+  ],
+},
 };
 // =========================================================================
 

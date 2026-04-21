@@ -32,7 +32,7 @@ const FILTER_PILLS = [
   "All Products", "Flanges", "Buttweld Fittings", "Connectors", 
   "Forged Fittings", "Fasteners", "Refractory Anchors", "Forging Products", 
   "Gaskets", "Sheets, Plates & Coils", "Rods and Bars", 
-  "Non ferrous metals"
+  "Non ferrous metals", "Pipes"
 ];
 
 // --- Main Products Array (For Grid & Filters) ---
@@ -95,6 +95,11 @@ const ALL_PRODUCTS = [
   { id: 56, category: "Non ferrous metals", name: "Cupronickel", slug: "cupronickel", desc: "Cupronickel alloys offering superior resistance to seawater corrosion, widely used in shipbuilding, condensers, and desalination plants.", image: "/products/Non ferrous metals/Cupronickel-Images.jpg" },
   { id: 57, category: "Buttweld Fittings", name: "Cap", slug: "cap", desc: "A pipe fitting used to seal the end of a pipe, ensuring leak-proof closure and protection from contamination.", image: "/products/Buttweld Fittings/cap.jpg" },
   { id: 58, category: "Buttweld Fittings", name: "Stub End", slug: "stub-end", desc: "A pipe fitting used to connect pipes with lap joint flanges, allowing easy disassembly and providing a secure, leak-proof joint.", image: "/products/Buttweld Fittings/stub-end.jpg" },
+  { id: 59, category: "Pipes", name: "Seamless Pipes", slug: "seamless-pipes", desc: "Seamless pipes manufactured without welding, offering high strength, corrosion resistance, and reliable performance in high-pressure and high-temperature applications.", image: "/products/Pipes/seamless-pipes.jpg" },
+  { id: 60, category: "Pipes", name: "Welded Pipes", slug: "welded-pipes", desc: "Welded pipes manufactured by rolling and welding steel plates, offering high strength, durability, and cost-effective solutions for fluid transport and structural applications.", image: "/products/Pipes/welded-pipes.png" },
+  { id: 61, category: "Pipes", name: "ERW Pipes", slug: "erw-pipes", desc: "Electric Resistance Welded pipes manufactured with high precision, offering uniform thickness, smooth finish, and cost-effective performance for structural and pipeline applications.", image: "/products/Pipes/erw-pipes.png" },
+  { id: 62, category: "Pipes", name: "Electro Polished Pipes", slug: "electro-polished-pipes", desc: "Premium stainless steel pipes with electro-polished mirror finish, offering ultra-smooth surface, high corrosion resistance, and hygienic performance for critical applications.", image: "/products/Pipes/electro-polished-pipes.png" },
+  { id: 63, category: "Pipes", name: "EFW Pipes", slug: "efw-pipes", desc: "Electric Fusion Welded pipes designed for large-diameter applications, offering high strength, durability, and reliable performance in demanding industrial environments.", image: "/products/Pipes/efw-pipes.png" },
 ];
 
 function Products() {
