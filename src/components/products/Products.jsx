@@ -55,7 +55,7 @@ const ALL_PRODUCTS = [
   { id: 17, category: "Buttweld Fittings", name: "ANSI B16.28 Swage Nipple", slug: "ansi-b16-28-swage-nipple", desc: "Swage nipples meeting multiple ANSI and JIS dimension standards.", image: "/products/Buttweld Fittings/SS Swage Nipple.webp" },
   { id: 19, category: "Buttweld Fittings", name: "ASTM A403 Stainless Steel Reducing Tee", slug: "astm-a403-stainless-steel-reducing-tee", desc: "Reducing tees compliant with ASTM and ANSI standards.", image: "/products/Buttweld Fittings/ASME1.png" },
   { id: 20, category: "Buttweld Fittings", name: "ANSI B16.28 5D/6D Pipe Bend", slug: "ansi-b16-28-5d-6d-pipe-bend", desc: "Precision 5D/6D pipe bends for smooth flow and durability.", image: "/products/Buttweld Fittings/ANSI B16.28.png" },
-  { id: 21, category: "Buttweld Fittings", name: "ASME / ANSI B16.9 Barred Tee", slug: "asme-ansi-b16-9-barred-tee", desc: "Certified barred tees compliant with ASME and ANSI standards.", image: "/products/Buttweld Fittings/ASME2.png" },
+  { id: 21, category: "Buttweld Fittings", name: "ASME / ANSI B16.9 Barred Tee", slug: "asme-ansi-b16-9-barred-tee", desc: "Certified barred tees compliant with ASME and ANSI standards.", image: "/images/Buttweld Fittings/Barred Tees/Buttweld Barred Tee.jpg" },
   { id: 22, category: "Buttweld Fittings", name: "Cross Reducers", slug: "cross-reducers", desc: "Reducers available in concentric and eccentric designs.", image: "/products/Buttweld Fittings/Duplex Steel Concentric Reducer.jpg" },
   { id: 18, category: "Forged Fittings", name: "ANSI B16.28 Stainless Steel Cross Tee", slug: "ansi-b16-28-stainless-steel-cross-tee", desc: "Cross tees available in multiple thickness schedules.", image: "/products/Buttweld Fittings/SS Cross Tee.jpg" },
   { id: 16, category: "Forged Fittings", name: "ANSI B16.9 Forged Concentric Reducer", slug: "ansi-b16-9-forged-concentric-reducer", desc: "Concentric reducers compliant with ASME and ASTM standards.", image: "/products/Buttweld Fittings/Forged Concentric Reducer.jpg" },
@@ -93,6 +93,8 @@ const ALL_PRODUCTS = [
   { id: 54, category: "Non ferrous metals", name: "Copper Tubes", slug: "copper-tubes", desc: "High-conductivity copper products known for excellent electrical and thermal performance, ideal for wiring, heat exchangers, and industrial use.", image: "/products/Non ferrous metals/copper-pipe.jpg" },
   { id: 55, category: "Non ferrous metals", name: "Brass Tubes", slug: "brass-tubes", desc: "Durable and corrosion-resistant brass materials suitable for fittings, valves, and decorative components in marine and industrial environments.", image: "/products/Non ferrous metals/Brass-tubes.jpg" },
   { id: 56, category: "Non ferrous metals", name: "Cupronickel", slug: "cupronickel", desc: "Cupronickel alloys offering superior resistance to seawater corrosion, widely used in shipbuilding, condensers, and desalination plants.", image: "/products/Non ferrous metals/Cupronickel-Images.jpg" },
+  { id: 57, category: "Buttweld Fittings", name: "Cap", slug: "cap", desc: "A pipe fitting used to seal the end of a pipe, ensuring leak-proof closure and protection from contamination.", image: "/products/Buttweld Fittings/cap.jpg" },
+  { id: 58, category: "Buttweld Fittings", name: "Stub End", slug: "stub-end", desc: "A pipe fitting used to connect pipes with lap joint flanges, allowing easy disassembly and providing a secure, leak-proof joint.", image: "/products/Buttweld Fittings/stub-end.jpg" },
 ];
 
 function Products() {
@@ -213,7 +215,7 @@ function Products() {
                     
                     {/* --- UPDATED IMAGE SECTION --- */}
                     <div className={`relative w-full aspect-[16/10] overflow-hidden ${
-                      product.id === 6 || product.id === 20 ? 'bg-white' : 'bg-gray-50'
+                      product.id === 6 || product.id === 20  ? 'bg-white' : 'bg-gray-50'
                     }`}>
                       <img 
                         src={product.image} 
