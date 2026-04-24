@@ -58,7 +58,7 @@ export default function FloatingWhatsApp() {
           className="p-4 flex flex-col gap-3 max-h-[250px] md:max-h-[300px] overflow-y-auto"
           style={{
             backgroundColor: "#efeae2",
-            backgroundImage: "url('/whatsapp-pattern.png')",
+            // backgroundImage: "url('/whatsapp-pattern.png')",
           }}
         >
           <div className="self-start bg-white p-3 rounded-lg shadow-sm max-w-[85%]">
