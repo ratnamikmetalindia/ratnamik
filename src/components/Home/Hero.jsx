@@ -187,7 +187,7 @@ function Hero() {
           ></path>
         </svg>
       </button>
-    </div>
+    </div> 
   );
 }
 
