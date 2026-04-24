@@ -1485,10 +1485,10 @@ const productsDatabase = {
     slug: "asme-ansi-b16-9-barred-tee",
     shortDescription:
       "High-quality barred tees manufactured with precision for industrial and racing hose applications. Available in multiple materials including stainless steel, Hastelloy, Inconel, and nickel alloys.",
-    image: "./images/Buttweld Fittings/Barred Tees/Buttweld Barred Tee.jpg",
+    image: "./products/Buttweld Fittings/ASME2.png",
     gallery: [
       "./products/Buttweld Fittings/ASME1.png",
-      "./images/Buttweld Fittings/Barred Tees/Buttweld Barred Tee.jpg",
+      "./products/Buttweld Fittings/ASME2.png",
       "./products/Buttweld Fittings/ASME3.webp",
     ],
     features: [
