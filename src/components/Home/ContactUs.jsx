@@ -289,7 +289,7 @@ function ContactUs() {
         process.env.NEXT_PUBLIC_SERVICE_ID,
         process.env.NEXT_PUBLIC_TEMPLATE_ID,
         {
-          fullName: formData.fullName, 
+          fullName: formData.fullName,  
           email: formData.email,
           phone: formData.phone,
           subject: formData.subject || "No Subject",
