@@ -14,6 +14,8 @@ const FadeUpSection = ({ children, delay = 0, isVisible, className = "" }) => (
   </div>
 );
 
+// hello
+
 // --- Loading Spinner Icon ---
 const SpinnerIcon = () => (
   <svg
