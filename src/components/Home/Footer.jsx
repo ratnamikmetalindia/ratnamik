@@ -208,7 +208,7 @@ function Footer() {
           {/* Bottom Copyright Bar */}
           <div className="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-center items-center gap-2 text-center text-sm text-white/70">
             <p>
-              Copyright © {currentYear} Ratnamik Metal India | Build by Asha Next Technologies | 9594430223
+              Copyright © {currentYear} Ratnamik Metal India | Build by Asha Next Technologies || 9594430223
             </p>
           </div>
 
@@ -219,3 +219,4 @@ function Footer() {
 }
 
 export default Footer;
+
