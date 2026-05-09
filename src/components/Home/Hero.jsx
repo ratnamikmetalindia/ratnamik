@@ -10,24 +10,27 @@ function Hero() {
     {
       id: 1,
       src: "/heroVideo/video1.mp4",
+      poster: "/heroVideo/thumbnail.png", // Updated with your thumbnail path
       title: "Premium Metal Solutions",
       subtitle: "Delivering world-class alloys and steel products globally.",
-      durationMs: 4000, // Plays for 4 seconds
+      durationMs: 4000,
     },
     {
       id: 2,
       src: "/heroVideo/video2.mp4",
+      poster: "/heroVideo/thumbnail.png", // Updated with your thumbnail path
       title: "Precision Engineering",
       subtitle: "ISO 9001:2015 certified manufacturing excellence.",
-      durationMs: 48000, // Advance slide at exactly 48 seconds
-      maxTime: 48,       // Force video to loop at 48 seconds if user is hovering
+      durationMs: 48000,
+      maxTime: 48,
     },
     {
       id: 3,
       src: "/heroVideo/video3.mp4",
+      poster: "/heroVideo/thumbnail.png", // Updated with your thumbnail path
       title: "High-Grade Materials",
       subtitle: "Uncompromising quality for your most demanding projects.",
-      durationMs: 6000, // Plays for 6 seconds
+      durationMs: 6000,
     },
   ];
 
@@ -39,10 +42,8 @@ function Hero() {
     setCurrentSlide((prev) => (prev === 0 ? videos.length - 1 : prev - 1));
   };
 
-  // Custom timer based on the specific duration of the current video
   useEffect(() => {
     if (!isHovered) {
-      // Get the duration for the currently active video
       const currentDuration = videos[currentSlide].durationMs;
       
       const timer = setTimeout(() => {
@@ -61,7 +62,6 @@ function Hero() {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Container for videos - Absolute positioning for crossfade */}
       <div className="relative w-full h-full">
         {videos.map((vid, index) => (
           <div
@@ -70,15 +70,15 @@ function Hero() {
               index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
             }`}
           >
-            {/* Background Video */}
             <div className="relative w-full h-full overflow-hidden">
               <video
                 src={vid.src}
+                poster={vid.poster} // Calls the thumbnail.png instantly
+                preload="auto"
                 autoPlay
                 muted
                 loop
                 playsInline
-                // This checks the time continuously. If it hits the maxTime (48s), it loops back to 0.
                 onTimeUpdate={(e) => {
                   if (vid.maxTime && e.target.currentTime >= vid.maxTime) {
                     e.target.currentTime = 0;
@@ -87,7 +87,6 @@ function Hero() {
                 className="object-cover object-center w-full h-full"
               />
 
-              {/* Refined Gradient Overlay */}
               <div className="absolute inset-y-0 left-0 w-full md:w-[50%] bg-gradient-to-r from-black/60 via-black/30 to-transparent pointer-events-none z-10"></div>
             </div>
 
@@ -113,7 +112,6 @@ function Hero() {
                   {vid.subtitle}
                 </p>
 
-                {/* CTA Button */}
                 <div
                   className={`transform transition-all duration-1000 ease-out ${
                     index === currentSlide
@@ -147,7 +145,6 @@ function Hero() {
         ))}
       </div>
 
-      {/* Solid White Navigation Arrows */}
       <button
         onClick={prevSlide}
         className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-30 p-4 rounded-full bg-white text-gray-900 shadow-[0_4px_20px_rgba(0,0,0,0.15)] opacity-0 group-hover:opacity-100 transition-all duration-300 hover:text-[#075ca6] hover:scale-105 focus:outline-none"
@@ -159,12 +156,7 @@ function Hero() {
           stroke="currentColor"
           viewBox="0 0 24 24"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M15 19l-7-7 7-7"
-          ></path>
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
         </svg>
       </button>
 
@@ -179,12 +171,7 @@ function Hero() {
           stroke="currentColor"
           viewBox="0 0 24 24"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M9 5l7 7-7 7"
-          ></path>
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
         </svg>
       </button>
     </div> 
